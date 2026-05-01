@@ -17,7 +17,7 @@ Thumbs.db
 *.sublime-workspace
 
 ## ============================================
-## 2. GODOT 4.6+ SPECIFIC (CRITICAL)
+## 2. GODOT
 ## ============================================
 # Godot's internal cache and import system — NEVER commit these
 .godot/
@@ -41,7 +41,7 @@ mono_crash.*.json
 
 
 ## ============================================
-## 3. KOTLIN MULTIPLATFORM / GRADLE (CORE)
+## 3. KOTLIN MULTIPLATFORM / GRADLE
 ## ============================================
 .gradle/
 build/
@@ -58,7 +58,7 @@ hs_err_pid*
 replay_pid*
 
 ## ============================================
-## 4. SHARED KMP MODULE (your business logic)
+## 4. SHARED KMP MODULE
 ## ============================================
 shared/build/
 shared/.gradle/
