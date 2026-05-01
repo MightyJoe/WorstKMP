@@ -1,17 +1,148 @@
-# Godot 4+ specific ignores
-.godot/
-.nomedia
+# Worst .gitignore for Kotlin Multiplatform + Godot hybrid project
 
-# Godot-specific ignores
+## ============================================
+## 1. OPERATING SYSTEM & EDITOR JUNK
+## ============================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.sublime-project
+*.sublime-workspace
+
+## ============================================
+## 2. GODOT 4.6+ SPECIFIC (CRITICAL)
+## ============================================
+# Godot's internal cache and import system — NEVER commit these
+.godot/
 .import/
+export_presets.cfg 
+*.tmp
+*.log
+godot/.godot/
+godot/.import/
+godot/editor_settings-*.tres
+godot/*.translation          # Godot translation cache
+*.translation
+godot/addons/*/              # Only ignore downloaded addons
+.nomedia
 export.cfg
 export_credentials.cfg
-*.tmp
-
-# Imported translations (automatically generated from CSV files)
-*.translation
-
 # Mono-specific ignores
 .mono/
 data_*/
 mono_crash.*.json
+
+
+## ============================================
+## 3. KOTLIN MULTIPLATFORM / GRADLE (CORE)
+## ============================================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar   # Keep the wrapper jar so others can build
+.kotlin/
+kotlin-js-store/            # If you ever add Compose/Web target
+local.properties            # Android SDK path — machine specific
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+## ============================================
+## 4. SHARED KMP MODULE (your business logic)
+## ============================================
+shared/build/
+shared/.gradle/
+shared/out/
+shared/src/commonMain/resources/META-INF/
+
+## ============================================
+## 5. PLATFORM TARGETS
+## ============================================
+# Android
+android/build/
+android/.gradle/
+android/local.properties
+android/app/build/
+android/.cxx/
+android/app/release/
+android/app/debug/
+
+# iOS (if using Xcode export)
+ios/Pods/
+ios/*.xcworkspace/
+ios/DerivedData/
+ios/build/
+ios/*.ipa
+
+# JVM/Desktop
+*.exe
+*.dll
+*.so
+*.dylib
+desktop/build/
+
+## ============================================
+## 6. SECRETS & LOCAL CONFIG (NEVER COMMIT)
+## ============================================
+*.env
+.env.local
+secrets/
+config.local.*
+*.p12
+*.jks
+keystore.properties
+google-services.json
+GoogleService-Info.plist
+
+## ============================================
+## 7. LOGS, TEMP & BACKUPS
+## ============================================
+*.log
+logs/
+tmp/
+temp/
+*.bak
+*.swp
+*.old
+crashlytics-build.properties
+
+## ============================================
+## 8. PACKAGE MANAGERS & DEPENDENCIES
+## ============================================
+node_modules/  # Web Frontend
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+## ============================================
+## 9. BUILD ARTIFACTS (final outputs)
+## ============================================
+*.apk
+*.aab
+*.ipa
+*.dmg
+*.app
+*.exe
+dist/
+out/
+
+## ============================================
+## 10. MISCELLANEOUS (KMP + Godot gotchas)
+## ============================================
+# SQLDelight generated code
+*.db
+*.sqlite
+# Godot export templates (huge, download on demand)
+godot/export_templates/
+
+# End of WorstKMP .gitignore
