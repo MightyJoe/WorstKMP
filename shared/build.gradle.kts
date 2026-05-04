@@ -11,9 +11,51 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        commonMain.dependencies {
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.sqlDelight.runtime)
+        // commonMain = code that runs on ALL platforms (Android + Desktop + iOS)
+        // This is where most of your business logic, models, ViewModels, and SQLDelight queries live.
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
+                implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
+            }
+        }
+
+        // androidMain = code that ONLY runs on Android
+        // We put the Android-specific SQLite driver here.
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.sqlDelight.android.driver)   // AndroidSqliteDriver + Android SQLite bindings
+            }
+        }
+
+        // desktopMain = code that ONLY runs on Desktop (JVM)
+        // Uses JDBC (regular Java SQLite driver).
+        val desktopMain by getting {
+            dependencies {
+                implementation(libs.sqlDelight.jdbc.driver)      // JdbcSqliteDriver for desktop
+            }
+        }
+
+        // === iOS Setup ===
+
+        // iosMain = a virtual source set that both iOS targets share
+        // Created so we don't have to duplicate iOS code twice.
+        val iosMain by creating {
+            dependsOn(commonMain)   // iosMain can see everything in commonMain
+        }
+
+        // These two are the real iOS targets created by the KMP wizard
+        val iosArm64Main by getting {
+            dependsOn(iosMain)      // Real device (iPhone, iPad)
+        }
+
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)      // Simulator (when you run on Mac)
+        }
+
+        // Put the iOS SQLite driver in the shared iosMain
+        iosMain.dependencies {
+            implementation(libs.sqlDelight.native.driver)   // NativeSqliteDriver for iOS
         }
     }
 }
