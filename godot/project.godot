@@ -1,0 +1,10 @@
+config_version=5
+
+[application]
+config/name="WorstKMP"
+config/description="The Worst KMP Prototype"
+run/main_scene="res://scenes/InspectionScreen.tscn"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
