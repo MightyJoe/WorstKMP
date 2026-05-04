@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.sqlDelight)   // we'll add the version in libs.versions.toml next
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -13,8 +14,6 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.sqlDelight.runtime)
-            // Kable for Bluetooth later
-            // implementation("com.juul.kable:core:0.20.0")
         }
     }
 }
@@ -22,8 +21,23 @@ kotlin {
 sqldelight {
     databases {
         create("WorstDatabase") {
-            packageName = "com.worstkmp"
-            sourceFolders = ["sqldelight"]
+            packageName.set("com.worstkmp")
+            srcDirs.setFrom("src/commonMain/sqldelight")
         }
+    }
+}
+
+// Android configuration
+android {
+    namespace = "com.worstkmp"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    defaultConfig {
+        minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
