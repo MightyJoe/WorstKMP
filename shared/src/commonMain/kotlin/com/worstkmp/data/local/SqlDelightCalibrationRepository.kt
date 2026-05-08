@@ -1,6 +1,7 @@
 package com.worstkmp.data.local
 
 import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.db.QueryResult
 import com.worstkmp.WorstDatabase
 import com.worstkmp.domain.model.Calibration
 import com.worstkmp.domain.model.MapPoint
@@ -65,8 +66,28 @@ class SqlDelightCalibrationRepository(
             }
     }
 
-    override suspend fun saveCalibration(calibration: Calibration): Long = TODO()
-    override suspend fun deleteCalibration(id: Long) = TODO()
+    override suspend fun saveCalibration(calibration: Calibration): Unit {
+        queries.insertCalibration(
+            pdfFileName = calibration.pdfFileName,
+            point1X = calibration.point1.pdfX.toDouble(),
+            point1Y = calibration.point1.pdfY.toDouble(),
+            point1Lat = calibration.point1.realLat,
+            point1Lon = calibration.point1.realLon,
+            point2X = calibration.point2.pdfX.toDouble(),
+            point2Y = calibration.point2.pdfY.toDouble(),
+            point2Lat = calibration.point2.realLat,
+            point2Lon = calibration.point2.realLon,
+            point3X = calibration.point3.pdfX.toDouble(),
+            point3Y = calibration.point3.pdfY.toDouble(),
+            point3Lat = calibration.point3.realLat,
+            point3Lon = calibration.point3.realLon,
+            lastUpdated = calibration.lastUpdated
+        )
+    }
+
+    override suspend fun deleteCalibration(id: Long) {
+        queries.deleteCalibration(id)
+    }
 
     override fun getCalibrationByID(id: Long): Flow<Calibration?> {
         return queries.selectCalibrationByID(id)

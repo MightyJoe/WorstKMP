@@ -30,3 +30,16 @@ LIMIT 1;
 selectCalibrationByID:
 SELECT * FROM calibration
 WHERE id = ?;
+
+insertCalibration:
+INSERT INTO calibration (
+                pdfFileName, point1X, point1Y, point1Lat, point1Lon,
+                point2X, point2Y, point2Lat, point2Lon,
+                point3X, point3Y, point3Lat, point3Lon,
+                lastUpdated
+            )
+            VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteCalibration:
+DELETE FROM calibration
+WHERE id = ?;

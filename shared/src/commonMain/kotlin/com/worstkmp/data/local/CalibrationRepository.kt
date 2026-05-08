@@ -16,7 +16,7 @@ interface CalibrationRepository {
     fun getCalibrationByID(id: Long): Flow<Calibration?>
 
     // Save or update a calibration
-    suspend fun saveCalibration(calibration: Calibration): Long   // returns the id
+    suspend fun saveCalibration(calibration: Calibration)
 
     // Delete
     suspend fun deleteCalibration(id: Long)
