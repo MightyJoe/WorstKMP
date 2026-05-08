@@ -17,6 +17,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
                 implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
+                implementation(libs.coroutines.extensions)
             }
         }
 

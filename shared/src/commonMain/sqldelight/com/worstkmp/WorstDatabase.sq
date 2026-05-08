@@ -1,0 +1,32 @@
+
+CREATE TABLE IF NOT EXISTS calibration (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pdfFileName TEXT NOT NULL,
+    point1X REAL NOT NULL,
+    point1Y REAL NOT NULL,
+    point1Lat REAL NOT NULL,
+    point1Lon REAL NOT NULL,
+    point2X REAL NOT NULL,
+    point2Y REAL NOT NULL,
+    point2Lat REAL NOT NULL,
+    point2Lon REAL NOT NULL,
+    point3X REAL NOT NULL,
+    point3Y REAL NOT NULL,
+    point3Lat REAL NOT NULL,
+    point3Lon REAL NOT NULL,
+    lastUpdated INTEGER NOT NULL
+);
+
+-- Queries
+selectAllCalibrations:
+SELECT * FROM calibration
+ORDER BY lastUpdated DESC;
+
+selectLatestCalibration:
+SELECT * FROM calibration
+ORDER BY lastUpdated DESC
+LIMIT 1;
+
+selectCalibrationByID:
+SELECT * FROM calibration
+WHERE id = ?;
