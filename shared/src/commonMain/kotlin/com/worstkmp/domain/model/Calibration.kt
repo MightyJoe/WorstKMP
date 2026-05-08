@@ -1,5 +1,8 @@
 package com.worstkmp.domain.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Calibration(
     val id: Long = 0,
     val pdfFileName: String,           // e.g. "site_map.pdf"
@@ -9,6 +12,7 @@ data class Calibration(
     val lastUpdated: Long
 )
 
+@Serializable
 data class MapPoint(
     val pdfX: Float,     // Position on the PDF image
     val pdfY: Float,

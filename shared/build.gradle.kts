@@ -18,11 +18,12 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
                 implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
                 implementation(libs.coroutines.extensions)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 
         // androidMain = code that ONLY runs on Android
-        // We put the Android-specific SQLite driver here.
+        // The Android-specific SQLite driver.
         val androidMain by getting {
             dependencies {
                 implementation(libs.sqlDelight.android.driver)   // AndroidSqliteDriver + Android SQLite bindings
@@ -40,7 +41,8 @@ kotlin {
         // === iOS Setup ===
 
         // iosMain = a virtual source set that both iOS targets share
-        // Created so we don't have to duplicate iOS code twice.
+        // Created so we don't have to duplicate iOS code twice. Once for the real device, and once for the simulator.
+        // iOS doesn't share both like android does.
         val iosMain by creating {
             dependsOn(commonMain)   // iosMain can see everything in commonMain
         }
