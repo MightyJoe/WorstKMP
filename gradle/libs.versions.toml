@@ -17,6 +17,7 @@ kotlinx-serialization = "1.11.0" # IDEA Suggested Version is wrong. Check here: 
 kotlinx-coroutines = "1.10.2"
 material3 = "1.10.0-alpha05"
 sqlDelight = "2.3.2"
+voyagerNavigator = "1.1.0-beta03"
 
 [libraries]
 coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
@@ -44,6 +45,8 @@ sqlDelight-android-driver = { module = "app.cash.sqldelight:android-driver", ver
 sqlDelight-jdbc-driver = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 sqlDelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerNavigator" }
+voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyagerNavigator" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -54,3 +57,4 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinx-serialization" }
+voyager = { id = "cafe.adriel.voyager", version.ref = "voyagerNavigator" }
