@@ -1,3 +1,5 @@
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+
 package com.worstkmp.data.local
 
 import app.cash.sqldelight.db.SqlDriver
