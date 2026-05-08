@@ -1,7 +1,8 @@
-package com.worstprogrammer.worstkmp
+package com.worstkmp
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.worstkmp.App
 
 fun main() = application {
     Window(

@@ -1,4 +1,4 @@
-package com.worstprogrammer.worstkmp
+package com.worstkmp
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image

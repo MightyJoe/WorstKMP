@@ -1,4 +1,4 @@
-package com.worstprogrammer.worstkmp
+package com.worstkmp
 
 class Greeting {
     private val platform = getPlatform()

@@ -12,33 +12,48 @@ kotlin {
 
     sourceSets {
         // commonMain = code that runs on ALL platforms (Android + Desktop + iOS)
-        // This is where most of your business logic, models, ViewModels, and SQLDelight queries live.
-        commonMain.dependencies {
-            implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
-            implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
-            implementation(libs.coroutines.extensions)
-            implementation(libs.kotlinx.serialization.json)
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.screenmodel)
+        // This is where most of the business logic, models, ViewModels, and SQLDelight queries live.
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
+                implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
+                implementation(libs.coroutines.extensions)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.voyager.navigator)
+                implementation(libs.voyager.screenmodel)
+            }
         }
 
         // androidMain = code that ONLY runs on Android
         // The Android-specific SQLite driver.
-        androidMain.dependencies {
-            implementation(libs.sqlDelight.android.driver)   // AndroidSqliteDriver + Android SQLite bindings
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.sqlDelight.android.driver)   // AndroidSqliteDriver + Android SQLite bindings
+            }
         }
 
         // desktopMain = code that ONLY runs on Desktop (JVM)
         // Uses JDBC (regular Java SQLite driver).
-        jvmMain.dependencies {
-            implementation(libs.sqlDelight.jdbc.driver)      // JdbcSqliteDriver for desktop
+        val desktopMain by getting {
+            dependencies {
+                implementation(libs.sqlDelight.jdbc.driver)      // JdbcSqliteDriver for desktop
+            }
         }
 
         // === iOS Setup ===
 
         // iosMain = a virtual source set that both iOS targets share
-        // Created so we don't have to duplicate iOS code twice. Once for the real device, and once for the simulator.
-        // iOS doesn't share both like android does.
+        // Created so we don't have to duplicate iOS code twice.
+        val iosMain by creating {
+            dependsOn(commonMain)
+        }
+        val iosArm64Main by getting {
+            dependsOn(iosMain)
+        }
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
+
         iosMain.dependencies {
             implementation(libs.sqlDelight.native.driver)   // NativeSqliteDriver for iOS
         }

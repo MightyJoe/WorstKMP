@@ -1,4 +1,4 @@
-package com.worstprogrammer.worstkmp
+package com.worstkmp
 
 import platform.UIKit.UIDevice
 
@@ -8,4 +8,3 @@ class IOSPlatform : Platform {
     override val name: String
         get() = "${UIDevice.currentDevice.systemName()} ${UIDevice.currentDevice.systemVersion}"
 }
-

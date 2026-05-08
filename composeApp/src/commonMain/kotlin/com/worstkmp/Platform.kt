@@ -1,4 +1,4 @@
-package com.worstprogrammer.worstkmp
+package com.worstkmp
 
 // This is shared across all platforms
 interface Platform {
