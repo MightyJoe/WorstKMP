@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 private val LightColorScheme = lightColorScheme(
     // Primary color: Main brand color used for prominent UI elements
     // Examples: Primary buttons, FABs, active states, progress indicators, selected tabs
-    primary = Color(0xFFFF6600),
+    primary = Color(0xFFFF6500),
 
     // OnPrimary color: Text and icons displayed on top of primary color elements
     // Examples: Text on primary buttons, icons on FABs, content on primary-colored surfaces
@@ -21,6 +21,10 @@ private val LightColorScheme = lightColorScheme(
     // Secondary color: Accent color for less prominent components
     // Examples: Secondary buttons, checkboxes, radio buttons, sliders, switches
     secondary = Color(0xFF4CAF50),
+
+    // OnSecondary color: Text and icons displayed on top of secondary color elements
+    // Examples: Text on secondary buttons, icons on checkboxes/radio buttons, labels on secondary-colored components
+    onSecondary = Color.Black,
 
     // Background color: The backmost surface of the entire app
     // Examples: Main screen background in WorstSurface, scaffold background, bottom of all UI layers
@@ -41,8 +45,14 @@ private val LightColorScheme = lightColorScheme(
     // Outline color: Color used for borders and dividers on surface elements in dark mode
     // Examples: Card borders, text field outlines, dividers, component boundaries
     outline = Color(0xFF81C784),        // Subtle borders
-    
 
+    // PrimaryContainer color: A tonal variation of primary color for containers and grouped elements
+    // Examples: Tonal buttons, chip containers, selected navigation items, grouped primary elements
+    primaryContainer = Color(0xFFFF6C1A),
+
+    // OnPrimaryContainer color: Text and icons displayed on top of primaryContainer color elements
+    // Examples: Text on tonal buttons, icons in chip containers, labels on primary container surfaces
+    onPrimaryContainer = Color.Black,
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -57,6 +67,10 @@ private val DarkColorScheme = darkColorScheme(
     // Secondary color: Accent color for less prominent components (adjusted for dark mode)
     // Examples: Secondary buttons, checkboxes, radio buttons, sliders, switches
     secondary = Color(0xFF81C784),
+
+    // OnSecondary color: Text and icons displayed on top of secondary color elements
+    // Examples: Text on secondary buttons, icons on checkboxes/radio buttons, labels on secondary-colored components
+    onSecondary = Color.White,
 
     // Background color: The backmost surface of the entire app in dark mode
     // Examples: Main screen background in WorstSurface, scaffold background, bottom of all UI layers
@@ -77,6 +91,14 @@ private val DarkColorScheme = darkColorScheme(
     // Outline color: Color used for borders and dividers on surface elements in dark mode
     // Examples: Card borders, text field outlines, dividers, component boundaries
     outline = Color(0xFF3A3A3C),        // Subtle dark mode borders
+
+    // PrimaryContainer color: A tonal variation of primary color for containers and grouped elements
+    // Examples: Tonal buttons, chip containers, selected navigation items, grouped primary elements
+    primaryContainer = Color(0xFFD24C00),
+
+    // OnPrimaryContainer color: Text and icons displayed on top of primaryContainer color elements
+    // Examples: Text on tonal buttons, icons in chip containers, labels on primary container surfaces
+    onPrimaryContainer = Color.White,
 )
 
 @Composable
@@ -92,7 +114,7 @@ fun WorstTheme(
     // Apply Material 3 theming with the selected color scheme to all child composables
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = androidx.compose.material3.Typography(), //TODO Customize fonts
+        typography = MaterialTheme.typography,
         content = content
     )
 }

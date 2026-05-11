@@ -1,11 +1,12 @@
 package com.worstkmp.ui.theme
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -16,13 +17,22 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun WorstSurface(
     modifier: Modifier = Modifier,
+    contentAlignment: Alignment = Alignment.TopStart,
+    propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.() -> Unit
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),   // ← This is your backmost color
-        content = content
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+        contentColor = MaterialTheme.colorScheme.onBackground,
+        content = {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = contentAlignment,
+                propagateMinConstraints = propagateMinConstraints,
+                content = content
+            )
+        }
     )
 }
 
