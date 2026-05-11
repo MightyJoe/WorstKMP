@@ -44,6 +44,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenmodel)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
             implementation(project(":shared"))
         }
         commonTest.dependencies {

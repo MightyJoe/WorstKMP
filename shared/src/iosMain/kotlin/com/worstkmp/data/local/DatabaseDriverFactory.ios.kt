@@ -1,11 +1,10 @@
-@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 package com.worstkmp.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import com.worstkmp.WorstDatabase   // ← this is the generated one
+import com.worstkmp.WorstDatabase
 
-actual class DatabaseDriverFactory {
+actual class DatabaseDriverFactory actual constructor(context: Any?) {
     actual fun createDriver(): SqlDriver {
         return NativeSqliteDriver(WorstDatabase.Schema, "worstkmp.db")
     }

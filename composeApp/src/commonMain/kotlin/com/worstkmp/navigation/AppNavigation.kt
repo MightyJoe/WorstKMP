@@ -7,6 +7,5 @@ import com.worstkmp.ui.screens.HomeScreen
 
 @Composable
 fun AppNavigation() {
-    // Voyager root — starts with our first real screen
-    Navigator(screen = HomeScreen())
+    Navigator(screen = HomeScreen()) // Voyager root
 }

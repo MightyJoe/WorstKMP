@@ -1,4 +1,3 @@
-@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 package com.worstkmp.data.local
 
 import android.content.Context
@@ -6,12 +5,14 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.worstkmp.WorstDatabase
 
-actual class DatabaseDriverFactory(private val context: Context) {
+actual class DatabaseDriverFactory actual constructor(
+    private val context: Any?   // Koin will inject this on Android
+) {
     actual fun createDriver(): SqlDriver {
         return AndroidSqliteDriver(
-            schema = WorstDatabase.Schema,      // tells it which tables to create
-            context = context,
-            name = "worstkmp.db"                // filename of the database
+            schema = WorstDatabase.Schema,
+            context = context as Context,  // safe because Koin provides Context on Android
+            name = "worstkmp.db"
         )
     }
 }

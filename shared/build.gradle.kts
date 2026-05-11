@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -13,7 +15,7 @@ kotlin {
     sourceSets {
         // commonMain = code that runs on ALL platforms (Android + Desktop + iOS)
         // This is where most of the business logic, models, ViewModels, and SQLDelight queries live.
-        val commonMain by getting {
+        val commonMain: KotlinSourceSet by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
                 implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
@@ -21,20 +23,24 @@ kotlin {
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.voyager.navigator)
                 implementation(libs.voyager.screenmodel)
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewmodel)
             }
         }
 
         // androidMain = code that ONLY runs on Android
         // The Android-specific SQLite driver.
-        val androidMain by getting {
+        val androidMain: KotlinSourceSet by getting {
             dependencies {
                 implementation(libs.sqlDelight.android.driver)   // AndroidSqliteDriver + Android SQLite bindings
+                implementation(libs.koin.android)
             }
         }
 
         // desktopMain = code that ONLY runs on Desktop (JVM)
         // Uses JDBC (regular Java SQLite driver).
-        val desktopMain by getting {
+        val desktopMain: KotlinSourceSet by getting {
             dependencies {
                 implementation(libs.sqlDelight.jdbc.driver)      // JdbcSqliteDriver for desktop
             }
@@ -44,13 +50,13 @@ kotlin {
 
         // iosMain = a virtual source set that both iOS targets share
         // Created so we don't have to duplicate iOS code twice.
-        val iosMain by creating {
+        val iosMain: KotlinSourceSet by creating {
             dependsOn(commonMain)
         }
-        val iosArm64Main by getting {
+        val iosArm64Main: KotlinSourceSet by getting {
             dependsOn(iosMain)
         }
-        val iosSimulatorArm64Main by getting {
+        val iosSimulatorArm64Main: KotlinSourceSet by getting {
             dependsOn(iosMain)
         }
 

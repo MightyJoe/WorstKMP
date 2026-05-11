@@ -66,7 +66,7 @@ class SqlDelightCalibrationRepository(
             }
     }
 
-    override suspend fun saveCalibration(calibration: Calibration): Unit {
+    override suspend fun insert(calibration: Calibration): Unit {
         queries.insertCalibration(
             pdfFileName = calibration.pdfFileName,
             point1X = calibration.point1.pdfX.toDouble(),
