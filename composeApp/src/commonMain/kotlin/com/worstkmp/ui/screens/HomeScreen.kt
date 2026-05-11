@@ -9,38 +9,41 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.worstkmp.ui.theme.WorstSurface
 
 class HomeScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
+        WorstSurface {
+            val navigator = LocalNavigator.currentOrThrow
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
-            Text(
-                text = "WorstKMP Prototype",
-                style = MaterialTheme.typography.headlineLarge
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                Text(
+                    text = "WorstKMP Prototype",
+                    style = MaterialTheme.typography.headlineLarge
+                )
 
-            Text("Home Screen – State will persist here soon")
+                Text("Home Screen – State will persist here soon")
 
-            Button(onClick = { navigator.push(CalibrationScreen()) }) {
-                Text("Go to Calibration Screen →")
+                Button(onClick = { navigator.push(CalibrationScreen()) }) {
+                    Text("Go to Calibration Screen →")
+                }
+
+                Text(
+                    text = "Prototype goals reminder:\n" +
+                            "• Compose UI (Godot comparison coming)\n" +
+                            "• SQLDelight state survives kill/re-open\n" +
+                            "• Permissions, Bluetooth, Camera, etc. next",
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
-
-            Text(
-                text = "Prototype goals reminder:\n" +
-                        "• Compose UI (Godot comparison coming)\n" +
-                        "• SQLDelight state survives kill/re-open\n" +
-                        "• Permissions, Bluetooth, Camera, etc. next",
-                style = MaterialTheme.typography.bodyMedium
-            )
         }
     }
 }

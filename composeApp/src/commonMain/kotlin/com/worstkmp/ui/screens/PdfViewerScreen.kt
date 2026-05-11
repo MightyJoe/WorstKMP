@@ -10,45 +10,49 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.worstkmp.presentation.viewmodel.PdfViewerScreenViewModel
+import com.worstkmp.ui.theme.WorstSurface
 
 class PdfViewerScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
-        val viewModel = rememberScreenModel { PdfViewerScreenModel() }   // ← simple Voyager helper
+        WorstSurface {
+            val navigator = LocalNavigator.currentOrThrow
+            val viewModel = rememberScreenModel { PdfViewerScreenViewModel() }   // ← simple Voyager helper
 
-        val calibrations by viewModel.calibrations.collectAsState(initial = emptyList())
+            val calibrations by viewModel.calibrations.collectAsState(initial = emptyList())
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("PDF Viewer (Core Inspection Screen)", style = MaterialTheme.typography.headlineMedium)
-
-            Box(
+            Column(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                contentAlignment = Alignment.Center
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    "📄 [PDF / Map would render here]\n\nTap anywhere to add calibration point",
-                    style = MaterialTheme.typography.bodyLarge
-                )
-            }
+                Text("PDF Viewer (Core Inspection Screen)", style = MaterialTheme.typography.headlineMedium)
 
-            Button(onClick = { viewModel.addCalibrationPoint(null) }) {
-                Text("Add Calibration Point")
-            }
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        "📄 [PDF / Map would render here]\n\nTap anywhere to add calibration point",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
 
-            Text("Saved points on this PDF: ${calibrations.size}")
+                Button(onClick = { viewModel.addCalibrationPoint(null) }) {
+                    Text("Add Calibration Point")
+                }
 
-            Button(onClick = { navigator.pop() }) {
-                Text("← Back to Home")
+                Text("Saved points on this PDF: ${calibrations.size}")
+
+                Button(onClick = { navigator.pop() }) {
+                    Text("← Back to Home")
+                }
             }
         }
     }

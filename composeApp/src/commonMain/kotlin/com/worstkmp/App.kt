@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.worstkmp.navigation.AppNavigation
+import com.worstkmp.ui.theme.WorstTheme
 import org.jetbrains.compose.resources.painterResource
 
 import worstkmp.composeapp.generated.resources.Res
@@ -23,7 +24,7 @@ import worstkmp.composeapp.generated.resources.hamburger
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    WorstTheme {
         AppNavigation() // Voyager navigation runs the ui.
     }
 }
