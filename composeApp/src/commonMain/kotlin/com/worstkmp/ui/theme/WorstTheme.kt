@@ -6,12 +6,17 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 
 // custom color palette
 private val LightColorScheme = lightColorScheme(
     // Primary color: Main brand color used for prominent UI elements
     // Examples: Primary buttons, FABs, active states, progress indicators, selected tabs
     primary = Color(0xFFFF6600),
+
+    // OnPrimary color: Text and icons displayed on top of primary color elements
+    // Examples: Text on primary buttons, icons on FABs, content on primary-colored surfaces
+    onPrimary = Color.Black,
 
     // Secondary color: Accent color for less prominent components
     // Examples: Secondary buttons, checkboxes, radio buttons, sliders, switches
@@ -32,12 +37,22 @@ private val LightColorScheme = lightColorScheme(
     // OnSurface color: Text and icons displayed on top of surface elements
     // Examples: Text in cards, dialog content text, menu item text, drawer items
     onSurface = Color.Black,
+    
+    // Outline color: Color used for borders and dividers on surface elements in dark mode
+    // Examples: Card borders, text field outlines, dividers, component boundaries
+    outline = Color(0xFF81C784),        // Subtle borders
+    
+
 )
 
 private val DarkColorScheme = darkColorScheme(
     // Primary color: Main brand color used for prominent UI elements (adjusted for dark mode contrast)
     // Examples: Primary buttons, FABs, active states, progress indicators, selected tabs
     primary = Color(0xFFE75B00),
+
+    // OnPrimary color: Text and icons displayed on top of primary color elements
+    // Examples: Text on primary buttons, icons on FABs, content on primary-colored surfaces
+    onPrimary = Color.White,
 
     // Secondary color: Accent color for less prominent components (adjusted for dark mode)
     // Examples: Secondary buttons, checkboxes, radio buttons, sliders, switches
@@ -58,6 +73,10 @@ private val DarkColorScheme = darkColorScheme(
     // OnSurface color: Text and icons displayed on top of dark surface elements
     // Examples: Text in cards, dialog content text, menu item text, drawer items
     onSurface = Color.White,
+
+    // Outline color: Color used for borders and dividers on surface elements in dark mode
+    // Examples: Card borders, text field outlines, dividers, component boundaries
+    outline = Color(0xFF3A3A3C),        // Subtle dark mode borders
 )
 
 @Composable
@@ -76,4 +95,42 @@ fun WorstTheme(
         typography = androidx.compose.material3.Typography(), //TODO Customize fonts
         content = content
     )
+}
+
+@Preview
+@Composable
+private fun WorstSurfacePreview() {
+    WorstTheme {
+        WorstSurface {
+            WorstCard {
+                WorstText(
+                    text = "WorstSurface Preview",
+                    style = MaterialTheme.typography.headlineMedium
+                )
+                WorstButton(
+                    text = "Click Me",
+                    onClick = {}
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun WorstSurfaceDarkPreview() {
+    WorstTheme(darkTheme = true) {
+        WorstSurface {
+            WorstCard {
+                WorstText(
+                    text = "WorstSurface Preview",
+                    style = MaterialTheme.typography.headlineMedium
+                )
+                WorstButton(
+                    text = "Click Me",
+                    onClick = {}
+                )
+            }
+        }
+    }
 }

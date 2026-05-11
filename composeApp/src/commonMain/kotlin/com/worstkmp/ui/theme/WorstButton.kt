@@ -1,29 +1,31 @@
 package com.worstkmp.ui.theme
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
-/**
- * The backmost element of every screen.
- * This is the root background that everything else sits on top of.
- */
 @Composable
-fun WorstSurface(
-    modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit
+fun WorstButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),   // ← This is your backmost color
-        content = content
-    )
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        shape = RoundedCornerShape(12.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        )
+    ) {
+        Text(text, style = MaterialTheme.typography.titleMedium)
+    }
 }
 
 @Preview
@@ -63,4 +65,3 @@ private fun WorstSurfaceDarkPreview() {
         }
     }
 }
-

@@ -1,28 +1,24 @@
 package com.worstkmp.ui.theme
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 
-/**
- * The backmost element of every screen.
- * This is the root background that everything else sits on top of.
- */
 @Composable
-fun WorstSurface(
+fun WorstText(
+    text: String,
     modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit
+    style: androidx.compose.ui.text.TextStyle = MaterialTheme.typography.bodyLarge,
+    textAlign: TextAlign = TextAlign.Start
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),   // ← This is your backmost color
-        content = content
+    Text(
+        text = text,
+        style = style,
+        modifier = modifier,
+        textAlign = textAlign
     )
 }
 
@@ -63,4 +59,3 @@ private fun WorstSurfaceDarkPreview() {
         }
     }
 }
-
