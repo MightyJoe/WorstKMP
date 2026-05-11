@@ -10,15 +10,13 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.worstkmp.domain.model.Calibration
-import org.koin.compose.viewmodel.koinViewModel   // ← Koin magic
 
 class PdfViewerScreen : Screen {
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
-        val viewModel: PdfViewerScreenModel = koinViewModel()
+        val viewModel = rememberScreenModel { PdfViewerScreenModel() }   // ← simple Voyager helper
 
         val calibrations by viewModel.calibrations.collectAsState(initial = emptyList())
 
@@ -28,9 +26,8 @@ class PdfViewerScreen : Screen {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("PDF Viewer Screen (the heart of the app)", style = MaterialTheme.typography.headlineMedium)
+            Text("PDF Viewer (Core Inspection Screen)", style = MaterialTheme.typography.headlineMedium)
 
-            // Placeholder for PDF — tap anywhere to add calibration point
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -39,13 +36,13 @@ class PdfViewerScreen : Screen {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    "📄 [PDF would render here]\n\nTap here to add calibration point\n(GPS / manual coords coming soon)",
+                    "📄 [PDF / Map would render here]\n\nTap anywhere to add calibration point",
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
 
-            Button(onClick = { viewModel.addCalibrationPoint("New point from tap") }) {
-                Text("Tap to Add Calibration Point")
+            Button(onClick = { viewModel.addCalibrationPoint(null) }) {
+                Text("Add Calibration Point")
             }
 
             Text("Saved points on this PDF: ${calibrations.size}")

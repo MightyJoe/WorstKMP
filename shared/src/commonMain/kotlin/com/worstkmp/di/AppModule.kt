@@ -20,5 +20,4 @@ val appModule = module {
 
     singleOf(::SqlDelightCalibrationRepository)
 
-    factoryOf(::PdfViewerScreenModel)
 }

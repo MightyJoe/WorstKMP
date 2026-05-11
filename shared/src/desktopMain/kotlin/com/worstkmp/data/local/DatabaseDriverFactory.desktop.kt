@@ -5,7 +5,7 @@ import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import com.worstkmp.WorstDatabase
 import java.io.File
 
-actual class DatabaseDriverFactory actual constructor(context: Any?) {
+actual class DatabaseDriverFactory actual constructor(context: Any? = null) {
     actual fun createDriver(): SqlDriver {
         val dbFile = File("worstkmp.db")
         return JdbcSqliteDriver(
