@@ -9,6 +9,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun WorstCard(
     modifier: Modifier = Modifier,
+    contentAlignment: Alignment.Horizontal = Alignment.Start,
     content: @Composable ColumnScope.() -> Unit
 ) {
     Card(
@@ -34,6 +36,7 @@ fun WorstCard(
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
+            horizontalAlignment = contentAlignment,
             content = content
         )
     }

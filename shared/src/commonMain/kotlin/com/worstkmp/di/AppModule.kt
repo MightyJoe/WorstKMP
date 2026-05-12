@@ -1,9 +1,11 @@
 package com.worstkmp.di
 
 import com.worstkmp.WorstDatabase
+import com.worstkmp.data.local.CalibrationRepository
 import com.worstkmp.data.local.DatabaseDriverFactory
 import com.worstkmp.data.local.SqlDelightCalibrationRepository
 import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val appModule = module {
@@ -16,6 +18,6 @@ val appModule = module {
         WorstDatabase(driver)
     }
 
-    singleOf(::SqlDelightCalibrationRepository)
+    singleOf(::SqlDelightCalibrationRepository) bind CalibrationRepository::class
 
 }
