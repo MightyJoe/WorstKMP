@@ -25,27 +25,24 @@ fun WorstCard(
     contentAlignment: Alignment = Alignment.TopStart,   // ← now respected
     content: @Composable ColumnScope.() -> Unit
 ) {
-    
-    WorstTheme {
-        Card(
-            modifier = modifier,
-            shape = getWorstShapes().large,
-            colors = CardDefaults.cardColors(
-                containerColor = getWorstColorScheme().surface
-            ),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 0.dp,
-                pressedElevation = 0.dp
-            ),
-            border = BorderStroke(0.5.dp, getWorstColorScheme().outline) // Very subtle dark mode border
+    Card(
+        modifier = modifier,
+        shape = getWorstShapes().large,
+        colors = CardDefaults.cardColors(
+            containerColor = getWorstColorScheme().surface
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 0.dp,
+            pressedElevation = 0.dp
+        ),
+        border = BorderStroke(0.5.dp, getWorstColorScheme().outline) // Very subtle dark mode border
 
-        ) {
-            Column(
-                modifier = Modifier.padding(20.dp),
-                horizontalAlignment = horizontalAlignment,
-                content = content
-            )
-        }
+    ) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            horizontalAlignment = horizontalAlignment,
+            content = content
+        )
     }
 }
 

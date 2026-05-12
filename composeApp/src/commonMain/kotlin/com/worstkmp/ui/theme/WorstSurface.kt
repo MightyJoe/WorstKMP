@@ -35,26 +35,24 @@ fun WorstSurface(
     propagateMinConstraints: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    WorstTheme {
-        Surface(
-            modifier = modifier,
-            shape = shape,
-            color = color,
-            contentColor = contentColor,
-            tonalElevation = tonalElevation,
-            shadowElevation = shadowElevation,
-            border = border,
-            content = {
-                androidx.compose.foundation.layout.Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = contentAlignment,
-                    propagateMinConstraints = propagateMinConstraints
-                ) {
-                    content()
-                }
+    Surface(
+        modifier = modifier,
+        shape = shape,
+        color = color,
+        contentColor = contentColor,
+        tonalElevation = tonalElevation,
+        shadowElevation = shadowElevation,
+        border = border,
+        content = {
+            androidx.compose.foundation.layout.Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = contentAlignment,
+                propagateMinConstraints = propagateMinConstraints
+            ) {
+                content()
             }
-        )
-    }
+        }
+    )
 }
 
 

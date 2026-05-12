@@ -1,9 +1,9 @@
 package com.worstkmp.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,17 +23,34 @@ class HomeScreen : Screen {
         val navigator: cafe.adriel.voyager.navigator.Navigator = LocalNavigator.currentOrThrow
         val viewModel: HomeScreenViewModel = rememberScreenModel { HomeScreenViewModel() }   // Voyager keeps track of the viewModel (and lifecycle)
 
-        HomeScreenUI(message = viewModel.getWelcomeMessage())
-
+        HomeScreenUI(
+            message = viewModel.getWelcomeMessage(),
+            pageTwoButtonOnClick = {
+                navigator.push(PageTwoScreen())
+            }
+        )
     }
 
     @Composable
-    fun HomeScreenUI(message: String = "Welcome to WorstKMP") {
+    fun HomeScreenUI(
+        message: String = "Welcome to WorstKMP",
+        pageTwoButtonOnClick: () -> Unit = {}, // Default to empty function
+    ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
-            WorstCard(modifier = Modifier.padding(16.dp)) {
-                WorstText(
-                    text = message,
-                )
+            Column {
+                WorstCard(modifier = Modifier.padding(16.dp)) {
+                    WorstText(
+                        text = message,
+                    )
+                }
+                WorstCard(modifier = Modifier.padding(16.dp)) {
+                    WorstButton(onClick = {
+                        println("=== BUTTON CLICKED ===")
+                        pageTwoButtonOnClick.invoke()
+                    }) {
+                        WorstText(text = "Go to Page Two")
+                    }
+                }
             }
         }
     }

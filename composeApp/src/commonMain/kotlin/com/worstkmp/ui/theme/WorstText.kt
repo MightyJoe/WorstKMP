@@ -46,11 +46,15 @@ fun WorstText(
         style
     }
 
+    val clickableModifier = if (onClick != null) {
+        Modifier.clickable { onClick() }
+    } else {
+        Modifier
+    }
+
     Text(
         text = text,
-        modifier = modifier.clickable(enabled = onClick != null) {
-            onClick?.invoke()
-        },
+        modifier = modifier.then(clickableModifier),
         style = finalStyle,
         textAlign = textAlign,
         fontSize = fontSize,
