@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import kotlin.String
@@ -78,18 +79,19 @@ private fun WorstSurfacePreview() {
                     style = MaterialTheme.typography.headlineMedium
                 )
                 WorstButton(
-                    text = "Click Me",
                     onClick = {}
-                )
+                ) {
+                    WorstText(text = "Click Me")
+                }
             }
         }
     }
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun WorstSurfaceDarkPreview() {
-    WorstTheme(darkTheme = true) {
+    WorstTheme {
         WorstSurface {
             WorstCard {
                 WorstText(
@@ -97,9 +99,10 @@ private fun WorstSurfaceDarkPreview() {
                     style = MaterialTheme.typography.headlineMedium
                 )
                 WorstButton(
-                    text = "Click Me",
                     onClick = {}
-                )
+                ) {
+                    WorstText(text = "Click Me")
+                }
             }
         }
     }

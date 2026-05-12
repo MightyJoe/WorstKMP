@@ -1,14 +1,25 @@
 package com.worstkmp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
-// custom color palette
+// ================================================================
+// CUSTOM COLOR SCHEMES
+// ================================================================
 private val LightColorScheme = lightColorScheme(
     // Primary color: Main brand color used for prominent UI elements
     // Examples: Primary buttons, FABs, active states, progress indicators, selected tabs
@@ -54,7 +65,6 @@ private val LightColorScheme = lightColorScheme(
     // Examples: Text on tonal buttons, icons in chip containers, labels on primary container surfaces
     onPrimaryContainer = Color.Black,
 )
-
 private val DarkColorScheme = darkColorScheme(
     // Primary color: Main brand color used for prominent UI elements (adjusted for dark mode contrast)
     // Examples: Primary buttons, FABs, active states, progress indicators, selected tabs
@@ -102,23 +112,64 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 @Composable
+public fun getWorstColorScheme(): ColorScheme {
+    val darkTheme: Boolean = isSystemInDarkTheme()
+    val worstColorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    return worstColorScheme
+}
+
+// ================================================================
+// CUSTOM TYPOGRAPHY
+// ================================================================
+private val WorstTypography = Typography(
+    headlineLarge = TextStyle(fontSize = 32.sp, fontWeight = FontWeight.Bold),
+    headlineMedium = TextStyle(fontSize = 28.sp, fontWeight = FontWeight.SemiBold),
+    titleLarge = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.SemiBold),
+    bodyLarge = TextStyle(fontSize = 16.sp),
+    labelLarge = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Medium),
+)
+
+@Composable
+public fun getWorstTypography(): Typography {
+    return WorstTypography
+}
+
+// ================================================================
+// CUSTOM SHAPES (rounded corners, etc.)
+// ================================================================
+private val WorstShapes = Shapes(
+    small = RoundedCornerShape(8.dp),
+    medium = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+    large = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
+)
+
+@Composable
+public fun getWorstShapes(): Shapes {
+    return WorstShapes
+}
+
+// ================================================================
+// THEME WRAPPER (Wraps the entire app with custom Material 3 theming)
+// ================================================================
+@Composable
 fun WorstTheme(
-    // Whether to use dark or light theme; defaults to system preference
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // The composable content to be themed
     content: @Composable () -> Unit
 ) {
     // Select the appropriate color scheme based on dark mode preference
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val worstColorScheme = getWorstColorScheme()
 
     // Apply Material 3 theming with the selected color scheme to all child composables
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = MaterialTheme.typography,
+        colorScheme = worstColorScheme,
+        typography = WorstTypography,
+        shapes = WorstShapes,
         content = content
     )
 }
 
+// ================================================================
+// Example Previews
+// ================================================================
 @Preview
 @Composable
 private fun WorstSurfacePreview() {
@@ -130,18 +181,19 @@ private fun WorstSurfacePreview() {
                     style = MaterialTheme.typography.headlineMedium
                 )
                 WorstButton(
-                    text = "Click Me",
                     onClick = {}
-                )
+                ) {
+                    WorstText(text = "Click Me")
+                }
             }
         }
     }
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun WorstSurfaceDarkPreview() {
-    WorstTheme(darkTheme = true) {
+    WorstTheme {
         WorstSurface {
             WorstCard {
                 WorstText(
@@ -149,9 +201,10 @@ private fun WorstSurfaceDarkPreview() {
                     style = MaterialTheme.typography.headlineMedium
                 )
                 WorstButton(
-                    text = "Click Me",
                     onClick = {}
-                )
+                ) {
+                    WorstText(text = "Click Me")
+                }
             }
         }
     }
