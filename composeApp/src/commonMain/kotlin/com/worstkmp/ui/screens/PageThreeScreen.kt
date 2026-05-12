@@ -6,15 +6,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.worstkmp.presentation.viewmodel.PageThreeViewModel
+import com.worstkmp.presentation.viewmodel.PageTwoViewModel
+import com.worstkmp.ui.theme.WorstButton
+import com.worstkmp.ui.theme.WorstText
 
 class PageThreeScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
+        val navigator: cafe.adriel.voyager.navigator.Navigator = LocalNavigator.currentOrThrow
+        val viewModel: PageThreeViewModel = rememberScreenModel { PageThreeViewModel() }   // Voyager keeps track of the viewModel (and lifecycle)
 
         Column(
             modifier = Modifier
@@ -23,17 +29,17 @@ class PageThreeScreen : Screen {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Page Three", style = MaterialTheme.typography.headlineLarge)
+            WorstText("Page Three", style = MaterialTheme.typography.headlineLarge)
 
             Text("You are deep in the navigation stack now.")
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            Button(onClick = { navigator.pop() }) {
+            WorstButton(onClick = { navigator.pop() }) {
                 Text("← Back")
             }
 
-            Button(onClick = { navigator.popUntil { it is HomeScreen } }) {
+            WorstButton(onClick = { navigator.popUntil { it is HomeScreen } }) {
                 Text("Back to Home (pop all)")
             }
         }

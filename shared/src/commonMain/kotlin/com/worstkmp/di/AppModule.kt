@@ -1,8 +1,10 @@
 package com.worstkmp.di
 
 import com.worstkmp.WorstDatabase
+import com.worstkmp.data.local.AppStateRepository
 import com.worstkmp.data.local.CalibrationRepository
 import com.worstkmp.data.local.DatabaseDriverFactory
+import com.worstkmp.data.local.SqlDelightAppStateRepository
 import com.worstkmp.data.local.SqlDelightCalibrationRepository
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -75,7 +77,10 @@ val appModule = module {
     // bind CalibrationRepository::class tells Koin "when someone asks for CalibrationRepository, give them this"
     singleOf(::SqlDelightCalibrationRepository) bind CalibrationRepository::class
 
-    // Step 4: Create the GreetingService as a singleton
+    //SETP 4: Create the AppStateRepository implementation as a singleton
+    singleOf(::SqlDelightAppStateRepository) bind AppStateRepository::class
+
+    // Step 5: Create the GreetingService as a singleton
     // single<GreetingService> declares we're creating a GreetingService implementation
     // { GreetingServiceImpl() } creates a new instance of GreetingServiceImpl
     // When code asks for GreetingService, Koin will provide this GreetingServiceImpl instance

@@ -1,4 +1,5 @@
 
+-- CALIBRATION
 CREATE TABLE IF NOT EXISTS calibration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     pdfFileName TEXT NOT NULL,
@@ -14,7 +15,7 @@ CREATE TABLE IF NOT EXISTS calibration (
     point3Y REAL NOT NULL,
     point3Lat REAL NOT NULL,
     point3Lon REAL NOT NULL,
-    lastUpdated INTEGER NOT NULL
+    lastUpdated INTEGER NOT NULL -- Really a long.
 );
 
 -- Queries
@@ -43,3 +44,22 @@ INSERT INTO calibration (
 deleteCalibration:
 DELETE FROM calibration
 WHERE id = ?;
+
+
+-- APP STATE (for resuming where user left off)
+CREATE TABLE app_state (
+    id INTEGER PRIMARY KEY CHECK (id = 1),           -- Only ever one row
+    last_screen TEXT NOT NULL DEFAULT 'HOME',        -- ScreenType as string
+    last_screen_data TEXT DEFAULT '',                -- JSON for screen-specific data (e.g. pdf_id)
+    back_stack TEXT DEFAULT '',                      -- JSON array of screens for full stack restore
+    last_updated INTEGER NOT NULL DEFAULT 0          -- For crash detection / retry logic (really a data type long)
+);
+
+-- Queries
+selectAppState:
+SELECT * FROM app_state;
+
+insertAppState:
+INSERT OR REPLACE INTO app_state (
+    last_screen, last_screen_data, back_stack, last_updated
+    ) VALUES (?,?,?,?);

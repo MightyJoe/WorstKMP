@@ -6,15 +6,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
+import com.worstkmp.presentation.viewmodel.PageTwoViewModel
 
 class PageTwoScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
+        val navigator: cafe.adriel.voyager.navigator.Navigator = LocalNavigator.currentOrThrow
+        val viewModel: PageTwoViewModel = rememberScreenModel { PageTwoViewModel() }   // Voyager keeps track of the viewModel (and lifecycle)
+
 
         Column(
             modifier = Modifier
