@@ -53,11 +53,11 @@ import org.koin.dsl.module
  */
 val appModule = module {
 
-//    // Step 1: Create the DatabaseDriverFactory as a singleton
-//    // This factory is responsible for creating the database driver (the low-level database connection)
-//    // getOrNull() tries to inject an Android Context on Android, or returns null on desktop/iOS
-//    // Koin automatically provides the right value based on the platform
-//    single { DatabaseDriverFactory(getOrNull()) }
+    // Step 1: Create the DatabaseDriverFactory as a singleton
+    // This factory is responsible for creating the database driver (the low-level database connection)
+    // getOrNull() tries to inject an Android Context on Android, or returns null on desktop/iOS
+    // Koin automatically provides the right value based on the platform
+    single { DatabaseDriverFactory(getOrNull()) }
 
     // Step 2: Create the WorstDatabase instance as a singleton
     // This is your main database object that you'll use throughout the app
