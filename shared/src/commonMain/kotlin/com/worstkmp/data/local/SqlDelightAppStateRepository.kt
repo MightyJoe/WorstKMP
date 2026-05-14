@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class SqlDelightAppStateRepository(
-    database: WorstDatabase
+    private val database: WorstDatabase
 ) : AppStateRepository {
 
     private val queries = database.worstDatabaseQueries
@@ -17,16 +17,14 @@ class SqlDelightAppStateRepository(
             .asFlow()
             .map { result ->
                 val row = result.executeAsOneOrNull()
-                if (row == null) {
-                    AppState() // return default when nothing is saved yet
-                } else {
+                row?.let {
                     AppState(
-                        lastScreen = row.last_screen,
-                        lastScreenJSON = row.last_screen_data,
-                        backStackJSON = row.back_stack,
-                        lastUpdated = row.last_updated
+                        lastScreen = it.last_screen,
+                        lastScreenJSON = it.last_screen_data,
+                        backStackJSON = it.back_stack,
+                        lastUpdated = it.last_updated
                     )
-                }
+                } ?: AppState()   // default if no row yet
             }
     }
 
@@ -38,5 +36,4 @@ class SqlDelightAppStateRepository(
             last_updated = appState.lastUpdated
         )
     }
-
 }
