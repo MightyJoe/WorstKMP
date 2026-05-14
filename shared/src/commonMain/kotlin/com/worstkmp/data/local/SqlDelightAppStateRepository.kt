@@ -1,14 +1,13 @@
 package com.worstkmp.data.local
 
 import app.cash.sqldelight.coroutines.asFlow
-import app.cash.sqldelight.db.QueryResult
 import com.worstkmp.WorstDatabase
 import com.worstkmp.domain.model.AppState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class SqlDelightAppStateRepository(
-    private val database: WorstDatabase
+    database: WorstDatabase
 ) : AppStateRepository {
 
     private val queries = database.worstDatabaseQueries
@@ -31,7 +30,7 @@ class SqlDelightAppStateRepository(
             }
     }
 
-    override suspend fun insert(appState: AppState): Unit {
+    override suspend fun insert(appState: AppState) {
         queries.insertAppState(
             last_screen = appState.lastScreen,
             last_screen_data = appState.lastScreenJSON,

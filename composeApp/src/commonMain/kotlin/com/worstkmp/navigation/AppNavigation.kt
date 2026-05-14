@@ -32,7 +32,7 @@ fun AppNavigation() {
                     "PAGE_THREE" -> PageThreeScreen()
                     else -> throw Exception("Unknown screen: ${appState!!.lastScreen}")
                 }
-                targetScreen?.let { navigator.replace(it) }
+                targetScreen.let { navigator.replace(it) }
             }
         }
     }
