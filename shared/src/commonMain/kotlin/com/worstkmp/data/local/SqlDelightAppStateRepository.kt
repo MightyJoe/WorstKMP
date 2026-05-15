@@ -30,10 +30,12 @@ class SqlDelightAppStateRepository(
 
     override suspend fun insert(appState: AppState) {
         queries.insertAppState(
+            id = 1L,
             last_screen = appState.lastScreen,
             last_screen_data = appState.lastScreenJSON,
             back_stack = appState.backStackJSON,
             last_updated = appState.lastUpdated
         )
     }
+
 }

@@ -61,5 +61,5 @@ SELECT * FROM app_state;
 
 insertAppState:
 INSERT OR REPLACE INTO app_state (
-    last_screen, last_screen_data, back_stack, last_updated
-    ) VALUES (?,?,?,?);
+    id, last_screen, last_screen_data, back_stack, last_updated
+    ) VALUES (?,?,?,?, ?);

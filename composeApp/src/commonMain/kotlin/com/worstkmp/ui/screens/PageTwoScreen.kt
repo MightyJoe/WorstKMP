@@ -3,6 +3,9 @@ package com.worstkmp.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -10,8 +13,13 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.worstkmp.data.local.AppStateRepository
+import com.worstkmp.domain.model.AppState
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
 import com.worstkmp.presentation.viewmodel.PageTwoViewModel
+import kotlinx.coroutines.launch
+import org.koin.compose.getKoin
+import kotlin.time.Clock
 
 class PageTwoScreen : Screen {
 
@@ -20,6 +28,8 @@ class PageTwoScreen : Screen {
         val navigator: cafe.adriel.voyager.navigator.Navigator = LocalNavigator.currentOrThrow
         val viewModel: PageTwoViewModel = rememberScreenModel { PageTwoViewModel() }   // Voyager keeps track of the viewModel (and lifecycle)
 
+        val koin = getKoin()
+        val repository: AppStateRepository = koin.get()
 
         Column(
             modifier = Modifier
@@ -34,11 +44,47 @@ class PageTwoScreen : Screen {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            Button(onClick = { navigator.push(PageThreeScreen()) }) {
+            Button(onClick = {
+                kotlinx.coroutines.MainScope().launch {
+                    repository.insert(
+                        AppState(
+                            lastScreen = "PAGETHREE",
+                            lastScreenJSON = "",
+                            backStackJSON = "",
+                            lastUpdated = Clock.System.now().toEpochMilliseconds()
+                        )
+                    )
+                }
+                navigator.push(PageThreeScreen())
+            }) {
+
                 Text("Go to Page Three →")
             }
 
-            Button(onClick = { navigator.pop() }) {
+            Button(onClick = {
+                val previousScreenName = if (navigator.items.size > 1) {
+                    when (navigator.items[navigator.items.size - 2]) {
+                        is HomeScreen -> "HOME"
+                        is PageTwoScreen -> "PAGETWO"
+                        is PageThreeScreen -> "PAGETHREE"
+                        else -> "HOME"
+                    }
+                } else {
+                    "HOME"
+                }
+
+                kotlinx.coroutines.MainScope().launch {
+                    repository.insert(
+                        AppState(
+                            lastScreen = previousScreenName,
+                            lastScreenJSON = "",
+                            backStackJSON = "",
+                            lastUpdated = Clock.System.now().toEpochMilliseconds()
+                        )
+                    )
+                }
+
+                navigator.pop() }) {
                 Text("← Back to Home")
             }
         }

@@ -70,15 +70,15 @@ val appModule = module {
         WorstDatabase(driver)
     }
 
-    // Step 3: Create the CalibrationRepository implementation as a singleton
+    //SETP 3: Create the AppStateRepository implementation as a singleton
+    singleOf(::SqlDelightAppStateRepository) bind AppStateRepository::class
+
+    // Step 4: Create the CalibrationRepository implementation as a singleton
     // singleOf(::SqlDelightCalibrationRepository) is Koin's shorthand for creating a singleton
     // The ::SqlDelightCalibrationRepository syntax passes the constructor reference
     // Koin automatically injects WorstDatabase into SqlDelightCalibrationRepository's constructor
     // bind CalibrationRepository::class tells Koin "when someone asks for CalibrationRepository, give them this"
     singleOf(::SqlDelightCalibrationRepository) bind CalibrationRepository::class
-
-    //SETP 4: Create the AppStateRepository implementation as a singleton
-    singleOf(::SqlDelightAppStateRepository) bind AppStateRepository::class
 
     // Step 5: Create the GreetingService as a singleton
     // single<GreetingService> declares we're creating a GreetingService implementation

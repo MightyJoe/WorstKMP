@@ -7,6 +7,7 @@ import org.koin.core.component.inject
 
 class HomeScreenViewModel : ScreenModel, KoinComponent {
 
+
     // This is the Koin magic — it automatically gives us the service
     private val greetingService: GreetingService by inject()
 
