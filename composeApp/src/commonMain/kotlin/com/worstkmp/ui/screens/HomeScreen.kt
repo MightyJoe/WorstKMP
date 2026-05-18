@@ -1,6 +1,8 @@
 package com.worstkmp.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
@@ -28,6 +30,9 @@ class HomeScreen : Screen {
         val repository: AppStateRepository = koin.get()
         val viewModel = rememberScreenModel { HomeScreenViewModel() }
 
+        // This is the Compose + MVVM binding pattern.
+        val state = viewModel.uiState
+
         // Restore last screen on first load
         LaunchedEffect(Unit) {
             val savedState: AppState? = repository.getAppState().firstOrNull()
@@ -42,7 +47,7 @@ class HomeScreen : Screen {
         }
 
         HomeScreenUI(
-            message = viewModel.getWelcomeMessage(),
+            message = state.welcomeMessage,
             onGoToPageTwo = {
                 // Save current screen before navigating
                 kotlinx.coroutines.MainScope().launch {
@@ -51,17 +56,23 @@ class HomeScreen : Screen {
                     )
                 }
                 navigator.push(PageTwoScreen())
-            }
+            },
+            selectedTab = state.selectedTab,
+            onTabSelected = viewModel::selectTab ,
         )
     }
 
     @Composable
     fun HomeScreenUI(
         message: String = "Welcome to WorstKMP",
-        onGoToPageTwo: () -> Unit = {}
+        onGoToPageTwo: () -> Unit = {},
+        selectedTab: Int = 0,                    // NEW
+        onTabSelected: (Int) -> Unit = {}        // NEW
     ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
-            Column {
+            Column(modifier = Modifier.fillMaxSize()) {
+
+                // Existing content
                 WorstCard(modifier = Modifier.padding(16.dp)) {
                     WorstText(text = message)
                 }
@@ -69,6 +80,39 @@ class HomeScreen : Screen {
                     WorstButton(onClick = onGoToPageTwo) {
                         WorstText(text = "Go to Page Two")
                     }
+                }
+
+                // TEMP debug (we'll remove later)
+                WorstText(text = "Selected Tab: $selectedTab")
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                // NEW: Simple bottom navigation
+                NavigationBar {
+                    NavigationBarItem(
+                        selected = selectedTab == 0,
+                        onClick = { onTabSelected(0) },
+                        icon = { /* TODO: Add icon later */ },
+                        label = { WorstText(text = "Home") }
+                    )
+                    NavigationBarItem(
+                        selected = selectedTab == 1,
+                        onClick = { onTabSelected(1) },
+                        icon = { /* TODO: Add icon later */ },
+                        label = { WorstText(text = "PDFs") }
+                    )
+                    NavigationBarItem(
+                        selected = selectedTab == 2,
+                        onClick = { onTabSelected(2) },
+                        icon = { /* TODO: Add icon later */ },
+                        label = { WorstText(text = "Map") }
+                    )
+                    NavigationBarItem(
+                        selected = selectedTab == 3,
+                        onClick = { onTabSelected(3) },
+                        icon = { /* TODO: Add icon later */ },
+                        label = { WorstText(text = "Settings") }
+                    )
                 }
             }
         }
