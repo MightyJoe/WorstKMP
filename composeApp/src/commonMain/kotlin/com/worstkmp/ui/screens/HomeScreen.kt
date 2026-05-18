@@ -1,10 +1,7 @@
 package com.worstkmp.ui.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 import androidx.compose.ui.tooling.preview.Preview
@@ -12,51 +9,45 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.worstkmp.data.local.AppStateRepository
+import com.worstkmp.domain.enum.ScreenType
 import com.worstkmp.domain.model.AppState
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
-import com.worstkmp.ui.theme.WorstCard
 import com.worstkmp.ui.theme.*
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.koin.compose.getKoin
-import kotlin.time.Clock
 
 class HomeScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator: Navigator = LocalNavigator.currentOrThrow
-        val viewModel: HomeScreenViewModel = rememberScreenModel { HomeScreenViewModel() }   // Voyager keeps track of the viewModel (and lifecycle)
-
+        val navigator = LocalNavigator.currentOrThrow
         val koin = getKoin()
         val repository: AppStateRepository = koin.get()
-        val appState by repository.getAppState().collectAsState(
-            initial = null
-        ) 
+        val viewModel = rememberScreenModel { HomeScreenViewModel() }
 
-        // Restore last screen if it's not HOME
-        LaunchedEffect(appState?.lastScreen) {
-            when (appState?.lastScreen) {
-                "PAGETWO"   -> navigator.replace(PageTwoScreen())
-                "PAGETHREE" -> navigator.replace(PageThreeScreen())
-                // "HOME" does nothing — we stay here
+        // Restore last screen on first load
+        LaunchedEffect(Unit) {
+            val savedState: AppState? = repository.getAppState().firstOrNull()
+            if (savedState != null) {
+                val target = when (savedState.lastScreen) {
+                    ScreenType.PAGE_TWO.name -> PageTwoScreen()
+                    ScreenType.PAGE_THREE.name -> PageThreeScreen()
+                    else -> null
+                }
+                target?.let { navigator.push(it) }
             }
         }
 
         HomeScreenUI(
             message = viewModel.getWelcomeMessage(),
-            pageTwoButtonOnClick = {
-                MainScope().launch {
+            onGoToPageTwo = {
+                // Save current screen before navigating
+                kotlinx.coroutines.MainScope().launch {
                     repository.insert(
-                        AppState(
-                            lastScreen = "PAGETWO",
-                            lastScreenJSON = "",
-                            backStackJSON = "",
-                            lastUpdated = Clock.System.now().toEpochMilliseconds()
-                        )
+                        AppState(lastScreen = ScreenType.PAGE_TWO.name)
                     )
                 }
                 navigator.push(PageTwoScreen())
@@ -67,20 +58,15 @@ class HomeScreen : Screen {
     @Composable
     fun HomeScreenUI(
         message: String = "Welcome to WorstKMP",
-        pageTwoButtonOnClick: () -> Unit = {}, // Default to empty function
+        onGoToPageTwo: () -> Unit = {}
     ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
             Column {
                 WorstCard(modifier = Modifier.padding(16.dp)) {
-                    WorstText(
-                        text = message,
-                    )
+                    WorstText(text = message)
                 }
                 WorstCard(modifier = Modifier.padding(16.dp)) {
-                    WorstButton(onClick = {
-                        println("=== BUTTON CLICKED ===")
-                        pageTwoButtonOnClick.invoke()
-                    }) {
+                    WorstButton(onClick = onGoToPageTwo) {
                         WorstText(text = "Go to Page Two")
                     }
                 }

@@ -14,6 +14,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.worstkmp.data.local.AppStateRepository
+import com.worstkmp.domain.enum.ScreenType
 import com.worstkmp.domain.model.AppState
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
 import com.worstkmp.presentation.viewmodel.PageTwoViewModel
@@ -48,7 +49,7 @@ class PageTwoScreen : Screen {
                 kotlinx.coroutines.MainScope().launch {
                     repository.insert(
                         AppState(
-                            lastScreen = "PAGETHREE",
+                            lastScreen = ScreenType.PAGE_THREE.name,
                             lastScreenJSON = "",
                             backStackJSON = "",
                             lastUpdated = Clock.System.now().toEpochMilliseconds()
@@ -64,13 +65,13 @@ class PageTwoScreen : Screen {
             Button(onClick = {
                 val previousScreenName = if (navigator.items.size > 1) {
                     when (navigator.items[navigator.items.size - 2]) {
-                        is HomeScreen -> "HOME"
-                        is PageTwoScreen -> "PAGETWO"
-                        is PageThreeScreen -> "PAGETHREE"
-                        else -> "HOME"
+                        is HomeScreen -> ScreenType.HOME.name
+                        is PageTwoScreen -> ScreenType.PAGE_TWO.name
+                        is PageThreeScreen -> ScreenType.PAGE_THREE.name
+                        else -> ScreenType.HOME.name
                     }
                 } else {
-                    "HOME"
+                    ScreenType.HOME.name
                 }
 
                 kotlinx.coroutines.MainScope().launch {
