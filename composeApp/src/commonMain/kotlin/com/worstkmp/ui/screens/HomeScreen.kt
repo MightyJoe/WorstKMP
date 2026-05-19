@@ -42,7 +42,8 @@ class HomeScreen : Screen {
     ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
-                Spacer(modifier = Modifier.height(16.dp))
+
+                Spacer(modifier = Modifier.height(16.dp)) // Space so we are not on top of the nav bar.
 
                 when (selectedTab) {
                     0 -> {
@@ -96,12 +97,16 @@ class HomeScreen : Screen {
     @Preview
     @Composable
     fun Preview() {
-        HomeScreenUI()
+        WorstTheme {
+            HomeScreenUI()
+        }
     }
 
     @Preview(uiMode = UI_MODE_NIGHT_YES)
     @Composable
     fun NightModePreview() {
+        WorstTheme {
         HomeScreenUI()
+        }
     }
 }
