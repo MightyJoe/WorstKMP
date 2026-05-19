@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.model.ScreenModel
 
 /**
- * The single source of truth for HomeScreen UI state.
- * Using a data class + copy() makes state changes predictable and easy to test.
+ * Holds all UI state for HomeScreen.
+ * Data class pattern ensures immutable, testable state updates via copy().
  */
 data class HomeUiState(
     val selectedTab: Int = 0,           // 0 = Home, 1 = Maps, 2 = Map Viewer, 3 = Settings
@@ -17,35 +17,32 @@ data class HomeUiState(
 )
 
 /**
- * HomeScreenViewModel now owns all UI state for the Home area using
- * mutableStateOf + delegation. This is the pattern we will use across the app.
- *
- * It extends ScreenModel so it works with Voyager's rememberScreenModel.
+ * ViewModel for HomeScreen using a mutableStateOf delegation pattern.
+ * Extends ScreenModel for Voyager integration.
  */
 class HomeScreenViewModel : ScreenModel {
 
     /**
-     * The observable UI state. Screens read this with "by".
-     * Only this ViewModel can write to it (thanks to private set).
+     * Observable UI state. Compose recomposes when this changes.
+     * Private setter ensures only the ViewModel can modify the state.
      */
     var uiState by mutableStateOf(HomeUiState())
         private set
 
     /**
-     * Called when the user taps a bottom navigation item.
-     * This keeps "which screen we are on" centralized and solid.
+     * Updates selected tab index.
+     * Ignores redundant selections to prevent unnecessary recompositions.
      */
     fun selectTab(newTab: Int) {
         if (newTab == uiState.selectedTab) return
 
         uiState = uiState.copy(selectedTab = newTab)
 
-        // Future: we can trigger side effects here (analytics, loading data for that tab, etc.)
+        // TODO: Trigger side effects here (analytics, loading data for that tab, etc.)
     }
 
     /**
-     * Keeps existing behavior for now.
-     * Later we can move the message fully into uiState if we want.
+     * Returns welcome message from the current state.
      */
     fun getWelcomeMessage(): String {
         return uiState.welcomeMessage

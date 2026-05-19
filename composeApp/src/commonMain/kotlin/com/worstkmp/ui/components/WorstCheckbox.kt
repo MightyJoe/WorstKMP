@@ -1,4 +1,4 @@
-package com.worstkmp.ui.theme
+package com.worstkmp.ui.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,9 +36,9 @@ fun WorstCheckbox(
             onCheckedChange = onCheckedChange,
             enabled = enabled,
             colors = CheckboxDefaults.colors(
-                checkedColor = getWorstColorScheme().primary,
-                uncheckedColor = getWorstColorScheme().primary,
-                checkmarkColor = getWorstColorScheme().onPrimary,
+                checkedColor = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().primary,
+                uncheckedColor = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().primary,
+                checkmarkColor = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().onPrimary,
             )
         )
 
@@ -46,9 +46,9 @@ fun WorstCheckbox(
             Spacer(modifier = Modifier.width(8.dp))
             WorstText(
                 text = label,
-                style = getWorstTypography().bodyLarge,
-                color = if (enabled) getWorstColorScheme().onSurface
-                else getWorstColorScheme().onSurface.copy(alpha = 0.6f)
+                style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().bodyLarge,
+                color = if (enabled) _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().onSurface
+                else _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().onSurface.copy(alpha = 0.6f)
             )
         }
     }
@@ -58,7 +58,7 @@ fun WorstCheckbox(
 @Preview(showBackground = true)
 @Composable
 fun PreviewWorstCheckbox() {
-    WorstTheme {
+    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
         WorstCheckbox(
             checked = true,
             onCheckedChange = null,
@@ -70,12 +70,12 @@ fun PreviewWorstCheckbox() {
 @Preview( uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewWorstCheckboxDark() {
-    WorstTheme {
+    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
         WorstSurface() {
             WorstCheckbox(
                 checked = true,
                 onCheckedChange = null,
-                label = "Test Label"
+                label = "Check this out!"
             )
         }
     }

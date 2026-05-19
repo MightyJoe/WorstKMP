@@ -1,4 +1,4 @@
-package com.worstkmp.ui.theme
+package com.worstkmp.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.MaterialTheme
@@ -75,7 +75,7 @@ fun WorstText(
 @Preview
 @Composable
 private fun WorstSurfacePreview() {
-    WorstTheme {
+    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
         WorstSurface {
             WorstCard {
                 WorstText(
@@ -95,7 +95,7 @@ private fun WorstSurfacePreview() {
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun WorstSurfaceDarkPreview() {
-    WorstTheme {
+    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
         WorstSurface {
             WorstCard {
                 WorstText(

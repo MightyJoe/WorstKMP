@@ -11,6 +11,8 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
+import com.worstkmp.ui.components.WorstSurface
+import com.worstkmp.ui.components.WorstText
 import com.worstkmp.ui.theme.*
 
 /**
@@ -31,7 +33,7 @@ class HomeScreen : Screen {
 
     /**
      * The UI for the home screen.
-     * This is separate from the Content() method so we can easily preview and test it.
+     * This is separated from the Content() method, so we can easily preview and test it.
      * @param selectedTab The currently selected tab.
      * @param onTabSelected Callback for when a tab is selected.
      */

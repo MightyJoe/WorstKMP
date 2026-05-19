@@ -1,4 +1,4 @@
-package com.worstkmp.ui.theme
+package com.worstkmp.ui.components
 
 /**
  * DO NOT USE androidx.compose.material3.Surface directly.
@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 fun WorstSurface(
     modifier: Modifier = Modifier.fillMaxSize(),
     shape: androidx.compose.ui.graphics.Shape = androidx.compose.ui.graphics.RectangleShape,
-    color: Color = getWorstColorScheme().surface,
-    contentColor: Color = getWorstColorScheme().onSurface,
+    color: Color = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().surface,
+    contentColor: Color = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().onSurface,
     tonalElevation: androidx.compose.ui.unit.Dp = 0.dp,
     shadowElevation: androidx.compose.ui.unit.Dp = 0.dp,
     border: androidx.compose.foundation.BorderStroke? = null,
@@ -63,7 +63,7 @@ private fun WorstSurfacePreview() {
         WorstCard() {
             WorstText(
                 text = "WorstSurface Preview",
-                style = getWorstTypography().headlineMedium
+                style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().headlineMedium
             )
             WorstButton(
                 onClick = {}
@@ -77,17 +77,17 @@ private fun WorstSurfacePreview() {
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun WorstSurfaceDarkPreview() {
-    WorstTheme {
+    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
         WorstSurface {
             WorstCard {
                 WorstText(
                     text = "WorstSurface Preview",
-                    style = getWorstTypography().headlineMedium
+                    style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().headlineMedium
                 )
                 WorstButton(
                     onClick = {}
                 ) {
-                    WorstText(text = "Click Me")
+                    WorstText(text = "Woah.")
                 }
             }
         }
