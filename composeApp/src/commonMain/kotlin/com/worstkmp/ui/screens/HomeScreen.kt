@@ -13,12 +13,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.worstkmp.data.local.AppStateRepository
-import com.worstkmp.domain.enum.ScreenType
-import com.worstkmp.domain.model.AppState
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
 import com.worstkmp.ui.theme.*
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.launch
 import org.koin.compose.getKoin
 
 class HomeScreen : Screen {
@@ -30,64 +26,42 @@ class HomeScreen : Screen {
         val repository: AppStateRepository = koin.get()
         val viewModel = rememberScreenModel { HomeScreenViewModel() }
 
-        // This is the Compose + MVVM binding pattern.
-        val state = viewModel.uiState
 
-        // Restore last screen on first load
-        LaunchedEffect(Unit) {
-            val savedState: AppState? = repository.getAppState().firstOrNull()
-            if (savedState != null) {
-                val target = when (savedState.lastScreen) {
-                    ScreenType.PAGE_TWO.name -> PageTwoScreen()
-                    ScreenType.PAGE_THREE.name -> PageThreeScreen()
-                    else -> null
-                }
-                target?.let { navigator.push(it) }
-            }
-        }
+        val state = viewModel.uiState // This is the Compose + MVVM binding pattern.
 
         HomeScreenUI(
-            message = state.welcomeMessage,
-            onGoToPageTwo = {
-                // Save current screen before navigating
-                kotlinx.coroutines.MainScope().launch {
-                    repository.insert(
-                        AppState(lastScreen = ScreenType.PAGE_TWO.name)
-                    )
-                }
-                navigator.push(PageTwoScreen())
-            },
             selectedTab = state.selectedTab,
-            onTabSelected = viewModel::selectTab ,
+            onTabSelected = viewModel::selectTab,
         )
     }
 
     @Composable
     fun HomeScreenUI(
-        message: String = "Welcome to WorstKMP",
-        onGoToPageTwo: () -> Unit = {},
         selectedTab: Int = 0,                    // NEW
         onTabSelected: (Int) -> Unit = {}        // NEW
     ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
+                Spacer(modifier = Modifier.height(16.dp))
 
-                // Existing content
-                WorstCard(modifier = Modifier.padding(16.dp)) {
-                    WorstText(text = message)
-                }
-                WorstCard(modifier = Modifier.padding(16.dp)) {
-                    WorstButton(onClick = onGoToPageTwo) {
-                        WorstText(text = "Go to Page Two")
+                when (selectedTab) {
+                    0 -> {
+                        HomeTab(modifier = Modifier.weight(1f))
+                    }
+                    1 -> {
+                        MapsTab(modifier = Modifier.weight(1f))
+                    }
+                    2 -> {
+                        MapTab(modifier = Modifier.weight(1f))
+                    }
+                    3 -> {
+                        SettingsTab(modifier = Modifier.weight(1f))
+                    }
+                    else -> {
+                        Spacer(modifier = Modifier.weight(1f))
                     }
                 }
 
-                // TEMP debug (we'll remove later)
-                WorstText(text = "Selected Tab: $selectedTab")
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                // NEW: Simple bottom navigation
                 NavigationBar {
                     NavigationBarItem(
                         selected = selectedTab == 0,
