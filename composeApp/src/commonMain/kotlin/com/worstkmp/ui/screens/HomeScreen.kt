@@ -1,8 +1,6 @@
 package com.worstkmp.ui.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
@@ -11,8 +9,7 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
-import com.worstkmp.ui.components.WorstSurface
-import com.worstkmp.ui.components.WorstText
+import com.worstkmp.ui.components.*
 import com.worstkmp.ui.theme.*
 
 /**
@@ -67,26 +64,26 @@ class HomeScreen : Screen {
                 }
 
                 // Navigation bar at the bottom
-                NavigationBar {
-                    NavigationBarItem(
+                WorstNavigationBar {
+                    WorstNavigationBarItem(
                         selected = selectedTab == 0,
                         onClick = { onTabSelected(0) },
                         icon = { /* TODO: Add icon later */ },
                         label = { WorstText(text = "Home") }
                     )
-                    NavigationBarItem(
+                    WorstNavigationBarItem(
                         selected = selectedTab == 1,
                         onClick = { onTabSelected(1) },
                         icon = { /* TODO: Add icon later */ },
                         label = { WorstText(text = "Maps") }
                     )
-                    NavigationBarItem(
+                    WorstNavigationBarItem(
                         selected = selectedTab == 2,
                         onClick = { onTabSelected(2) },
                         icon = { /* TODO: Add icon later */ },
                         label = { WorstText(text = "Map") }
                     )
-                    NavigationBarItem(
+                    WorstNavigationBarItem(
                         selected = selectedTab == 3,
                         onClick = { onTabSelected(3) },
                         enabled = true,
