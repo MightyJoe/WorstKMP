@@ -99,7 +99,7 @@ class HomeScreen : Screen {
                         selected = selectedTab == 1,
                         onClick = { onTabSelected(1) },
                         icon = { /* TODO: Add icon later */ },
-                        label = { WorstText(text = "Files") }
+                        label = { WorstText(text = "Maps") }
                     )
                     NavigationBarItem(
                         selected = selectedTab == 2,
@@ -109,21 +109,7 @@ class HomeScreen : Screen {
                     )
                     NavigationBarItem(
                         selected = selectedTab == 3,
-                        onClick = { },
-                        enabled = false,
-                        icon = { /* TODO: Add icon later */ },
-                        label = { WorstText(text = "Compass") }
-                    )
-                    NavigationBarItem(
-                        selected = selectedTab == 4,
-                        onClick = { },
-                        enabled = false,
-                        icon = { /* TODO: Add icon later */ },
-                        label = { WorstText(text = "AR") }
-                    )
-                    NavigationBarItem(
-                        selected = selectedTab == 5,
-                        onClick = { onTabSelected(5) },
+                        onClick = { onTabSelected(3) },
                         enabled = true,
                         icon = { /* TODO: Add icon later */ },
                         label = { WorstText(text = "Settings") }

@@ -10,7 +10,7 @@ import cafe.adriel.voyager.core.model.ScreenModel
  * Using a data class + copy() makes state changes predictable and easy to test.
  */
 data class HomeUiState(
-    val selectedTab: Int = 0,           // 0 = Home, 1 = Load PDFs, 2 = PDF Viewer, 3 = Compass, 4 = AR, 5 = Settings
+    val selectedTab: Int = 0,           // 0 = Home, 1 = Maps, 2 = Map Viewer, 3 = Settings
     val welcomeMessage: String = "Welcome to WorstKMP",
     val showTutorial: Boolean = true
     // Later we can add: recentPdfs, recentTracks, isLoading, etc.
