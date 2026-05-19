@@ -13,6 +13,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
 import com.worstkmp.ui.theme.*
 
+/**
+ * The main screen of the app; the home screen.
+ */
 class HomeScreen : Screen {
 
     @Composable
@@ -26,6 +29,12 @@ class HomeScreen : Screen {
         )
     }
 
+    /**
+     * The UI for the home screen.
+     * This is separate from the Content() method so we can easily preview and test it.
+     * @param selectedTab The currently selected tab.
+     * @param onTabSelected Callback for when a tab is selected.
+     */
     @Composable
     fun HomeScreenUI(
         selectedTab: Int = 0,
@@ -90,6 +99,7 @@ class HomeScreen : Screen {
     @Preview
     @Composable
     fun Preview() {
+        // We need to wrap the whole app in a WorstTheme to get the correct colors.
         WorstTheme {
             HomeScreenUI()
         }
