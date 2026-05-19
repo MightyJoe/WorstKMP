@@ -10,23 +10,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import com.worstkmp.data.local.AppStateRepository
 import com.worstkmp.presentation.viewmodel.HomeScreenViewModel
 import com.worstkmp.ui.theme.*
-import org.koin.compose.getKoin
 
 class HomeScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
-        val koin = getKoin()
-        val repository: AppStateRepository = koin.get()
-        val viewModel = rememberScreenModel { HomeScreenViewModel() }
-
-
+        val viewModel = rememberScreenModel { HomeScreenViewModel() } // Voyager keeps track of the viewModel (and lifecycle)
         val state = viewModel.uiState // This is the Compose + MVVM binding pattern.
 
         HomeScreenUI(
@@ -37,14 +28,15 @@ class HomeScreen : Screen {
 
     @Composable
     fun HomeScreenUI(
-        selectedTab: Int = 0,                    // NEW
-        onTabSelected: (Int) -> Unit = {}        // NEW
+        selectedTab: Int = 0,
+        onTabSelected: (Int) -> Unit = {}
     ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
 
                 Spacer(modifier = Modifier.height(16.dp)) // Space so we are not on top of the nav bar.
 
+                // Fill the screen with the selected tab content
                 when (selectedTab) {
                     0 -> {
                         HomeTab(modifier = Modifier.weight(1f))
@@ -63,6 +55,7 @@ class HomeScreen : Screen {
                     }
                 }
 
+                // Navigation bar at the bottom
                 NavigationBar {
                     NavigationBarItem(
                         selected = selectedTab == 0,
@@ -106,7 +99,7 @@ class HomeScreen : Screen {
     @Composable
     fun NightModePreview() {
         WorstTheme {
-        HomeScreenUI()
+            HomeScreenUI()
         }
     }
 }
