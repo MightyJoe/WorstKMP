@@ -112,6 +112,8 @@ private val DarkColorScheme = darkColorScheme(
     onPrimaryContainer = Color.White,
 )
 
+
+
 @Composable
 public fun getWorstColorScheme(): ColorScheme {
     val darkTheme: Boolean = isSystemInDarkTheme()
@@ -166,6 +168,23 @@ fun WorstTheme(
         shapes = WorstShapes,
         content = content
     )
+}
+
+// ================================================================
+// THEME ACCESSORS (Allow access to theme properties from anywhere)
+// ================================================================
+object WorstTheme {
+    val colors: ColorScheme
+        @Composable
+        get() = getWorstColorScheme()
+
+    val typography: Typography
+        @Composable
+        get() = getWorstTypography()
+
+    val shapes: Shapes
+        @Composable
+        get() = getWorstShapes()
 }
 
 // ================================================================

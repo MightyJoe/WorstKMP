@@ -41,6 +41,12 @@ class HomeScreen : Screen {
     ) {
         WorstSurface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize()) {
+                WorstLoading(
+                    modifier = Modifier.padding(16.dp),
+                    size = 56.dp,
+                    color = WorstTheme.colors.primary,
+                    usePulsingEffect = true   // set to false for a normal spinner
+                )
 
                 Spacer(modifier = Modifier.height(16.dp)) // Space so we are not on top of the nav bar.
 
