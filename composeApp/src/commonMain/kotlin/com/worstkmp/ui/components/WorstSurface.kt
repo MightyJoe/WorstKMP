@@ -19,8 +19,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
- * The backmost element of every screen.
- * This is the root background that everything else sits on top of.
+ * # WorstSurface
+ *
+ * ### Base Layer Deployment - Foundation Secured! 🐧
+ *
+ * This is your backmost element - the absolute foundation of every screen.
+ * This is the root background that everything else sits on top of. Think of it as the 
+ * ice beneath our flippers - solid, reliable, and always there when you need it!
+ *
+ * #### Strategic Position
+ * - **Bottom Layer**: Nothing goes beneath this - it's the floor, soldier!
+ * - **Full Coverage**: Fills the entire operation zone by default
+ * - **Theme Synchronized**: Auto-adapts to light/dark mode - we're tactical like that
+ * - **Zero Elevation**: Flat as the Antarctic ice sheet - no shadows, no questions
+ *
+ * #### Operational Notes
+ * Every screen in this application deploys on top of a WorstSurface. It's the canvas,
+ * the stage, the launching pad for all your UI operations. You want a consistent base?
+ * This is it. You want proper color theming? Already handled. You want to look
+ * professional? WorstSurface has got your six!
+ *
+ * > **STANDING ORDERS**
+ * > DO NOT use `androidx.compose.material3.Surface` directly.
+ * > Always deploy `WorstSurface`. We maintain surface standards here, people!
+ *
+ * ---
  */
 @Composable
 fun WorstSurface(
@@ -60,15 +83,15 @@ fun WorstSurface(
 @Composable
 private fun WorstSurfacePreview() {
     WorstSurface() {
-        WorstCard() {
+        WorstCard(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
             WorstText(
-                text = "WorstSurface Preview",
+                text = "I REJECT NATURE!",
                 style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().headlineMedium
             )
             WorstButton(
                 onClick = {}
             ) {
-                WorstText(text = "Click Me")
+                WorstText(text = "Get that egg!")
             }
         }
     }
@@ -79,9 +102,9 @@ private fun WorstSurfacePreview() {
 private fun WorstSurfaceDarkPreview() {
     _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
         WorstSurface {
-            WorstCard {
+            WorstCard (modifier = Modifier.fillMaxWidth().padding(16.dp)){
                 WorstText(
-                    text = "WorstSurface Preview",
+                    text = "Seal Explosions",
                     style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().headlineMedium
                 )
                 WorstButton(

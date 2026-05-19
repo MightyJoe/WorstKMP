@@ -48,6 +48,8 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(project(":shared"))
+            implementation(libs.compose.material.icons.extended)
+            implementation(libs.compose.material.icons.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -15,9 +15,38 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
- * WorstCheckbox - Official checkbox for the WorstKMP design system.
+ * # WorstCheckbox
  *
- * Use this everywhere instead of raw androidx.compose.material3.Checkbox.
+ * ### Binary Selection Device - Checkbox Deployment Protocol! 🐧
+ *
+ * This is your standard-issue checkbox component for the
+ * WorstKMP design system. When you need users to make a yes/no decision, confirm an option,
+ * or toggle a setting, this is your tactical widget of choice. Clean checkmarks, optional labels,
+ * and ready for any boolean operation you throw at it!
+ *
+ * #### Tactical Specifications
+ * - **Boolean Control**: Check or uncheck - simple, effective, no nonsense!
+ * - **Theme Integration**: Auto-syncs with WorstKMP colors - smooth operation
+ * - **Label Support**: Optional text label for clarity - communication is key!
+ * - **Enabled State**: Full enable/disable capability - lock it down when needed
+ * - **Event Handling**: Callback integration for state changes - stay informed!
+ *
+ * #### Mission Objectives
+ * Deploy this checkbox for confirmations, multi-select lists, settings toggles,
+ * or any situation requiring binary user input. It's got theming, it's got labels,
+ * and it plays nice with the rest of the squad. Everything a penguin commander could want!
+ *
+ * > **STANDING ORDERS**
+ * > DO NOT use `androidx.compose.material3.Checkbox` directly.
+ * > Always deploy `WorstCheckbox`. We maintain checkbox standards here, people!
+ *
+ * ---
+ *
+ * @param checked Current check state - is the box ticked or not, soldier?
+ * @param onCheckedChange Callback for state changes - reports back to command
+ * @param modifier Tactical adjustments for size and battlefield positioning
+ * @param enabled Enable/disable the checkbox - sometimes we need to lock things down
+ * @param label Optional text label - tell 'em what they're checking!
  */
 @Composable
 fun WorstCheckbox(
@@ -62,7 +91,7 @@ fun PreviewWorstCheckbox() {
         WorstCheckbox(
             checked = true,
             onCheckedChange = null,
-            label = "Test Label"
+            label = "Cheesy Dibbles"
         )
     }
 }
@@ -75,7 +104,7 @@ fun PreviewWorstCheckboxDark() {
             WorstCheckbox(
                 checked = true,
                 onCheckedChange = null,
-                label = "Check this out!"
+                label = "Diversion!"
             )
         }
     }

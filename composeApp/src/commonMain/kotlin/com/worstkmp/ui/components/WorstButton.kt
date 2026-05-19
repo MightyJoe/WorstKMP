@@ -16,7 +16,43 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
- * WorstButton - Official button for the WorstKMP design system.
+ * # WorstButton
+ *
+ * ### Clickable Action Component - Tap Target Acquired! 🐧
+ *
+ * Alright team, listen up! This is your go-to interactive button component for the
+ * WorstKMP design system. When users need to trigger an action, this is your weapon
+ * of choice. Click it, tap it, press it - this button's ready for deployment!
+ *
+ * #### Tactical Specifications
+ * - **Action Trigger**: One tap, instant response - no hesitation!
+ * - **Theme Integration**: Auto-syncs with WorstKMP colors and shapes - seamless integration
+ * - **State Control**: Enabled/disabled modes - full operational control
+ * - **Customization Protocol**: Shape, colors, elevation - configure to mission specs
+ * - **Content Flexible**: Text, icons, whatever you need - we adapt!
+ *
+ * #### Mission Objectives
+ * Perfect for form submissions, dialog confirmations, navigation triggers, or any
+ * situation requiring user-initiated action. Handles touch interactions like a pro,
+ * provides visual feedback, and integrates with the WorstKMP theme automatically.
+ * Just the way we like it!
+ *
+ * > **STANDING ORDERS**
+ * > DO NOT use `androidx.compose.material3.Button` directly.
+ * > Always deploy `WorstButton`. We maintain standards here, soldier!
+ * 
+ * ---
+ *
+ * @param onClick Action to execute when a button is tapped - your mission callback
+ * @param modifier Tactical adjustments for size, padding, and battlefield positioning
+ * @param enabled Operational status - true for active, false for disabled state
+ * @param shape Button contour configuration - rounded by default for smooth operations
+ * @param colors Color scheme for container and content - theme-integrated
+ * @param elevation Shadow depth for that tactical dimension - keeps it snappy
+ * @param border Optional perimeter stroke - when you need that extra definition
+ * @param contentPadding Interior spacing protocol - keeps content comfortable
+ * @param interactionSource Touch event monitor - for advanced interaction tracking
+ * @param content Your button's payload - text, icons, whatever the mission requires
  */
 @Composable
 fun WorstButton(
@@ -49,22 +85,22 @@ fun WorstButton(
     }
 }
 
-@Preview
+@Preview(name = "Light Mode")
 @Composable
 private fun WorstSurfacePreview() {
     WorstButton(
         onClick = {}
     ) {
-        WorstText("Click Me")
+        WorstText("Dennis!")
     }
 }
 
-@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
 @Composable
 private fun WorstSurfaceDarkPreview() {
     WorstButton(
         onClick = {}
     ) {
-        WorstText("Click Me")
+        WorstText("DORIS!")
     }
 }
