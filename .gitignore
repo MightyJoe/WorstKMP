@@ -45,7 +45,6 @@ mono_crash.*.json
 ## ============================================
 .gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar   # Keep the wrapper jar so others can build
 .kotlin/
 kotlin-js-store/            # If you ever add Compose/Web target
 local.properties            # Android SDK path — machine specific
@@ -54,6 +53,8 @@ local.properties            # Android SDK path — machine specific
 *.war
 *.ear
 *.nar
+# Keep the wrapper jar so others can build
+!gradle/wrapper/gradle-wrapper.jar
 hs_err_pid*
 replay_pid*
 
