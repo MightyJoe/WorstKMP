@@ -71,7 +71,7 @@ import kotlin.String
 fun WorstText(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().bodyLarge,
+    style: TextStyle = com.worstkmp.ui.theme.getWorstTypography().bodyLarge,
     color: Color = getWorstColorScheme().onSurface,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = TextUnit.Unspecified,

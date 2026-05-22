@@ -59,9 +59,9 @@ fun WorstButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    shape: Shape = _root_ide_package_.com.worstkmp.ui.theme.getWorstShapes().medium,
+    shape: Shape = com.worstkmp.ui.theme.getWorstShapes().medium,
     colors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().primary
+        containerColor = com.worstkmp.ui.theme.getWorstColorScheme().primary
     ),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     border: BorderStroke? = null,
@@ -69,7 +69,7 @@ fun WorstButton(
     interactionSource: MutableInteractionSource? = null,
     content: @Composable () -> Unit = {}
 ) {
-    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
+    com.worstkmp.ui.theme.WorstTheme {
         Button(
             onClick = onClick,
             modifier = modifier,

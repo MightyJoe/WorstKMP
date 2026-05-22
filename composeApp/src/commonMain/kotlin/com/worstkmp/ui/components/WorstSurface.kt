@@ -49,8 +49,8 @@ import androidx.compose.ui.unit.dp
 fun WorstSurface(
     modifier: Modifier = Modifier.fillMaxSize(),
     shape: androidx.compose.ui.graphics.Shape = androidx.compose.ui.graphics.RectangleShape,
-    color: Color = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().surface,
-    contentColor: Color = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().onSurface,
+    color: Color = com.worstkmp.ui.theme.getWorstColorScheme().surface,
+    contentColor: Color = com.worstkmp.ui.theme.getWorstColorScheme().onSurface,
     tonalElevation: androidx.compose.ui.unit.Dp = 0.dp,
     shadowElevation: androidx.compose.ui.unit.Dp = 0.dp,
     border: androidx.compose.foundation.BorderStroke? = null,
@@ -86,7 +86,7 @@ private fun WorstSurfacePreview() {
         WorstCard(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
             WorstText(
                 text = "I REJECT NATURE!",
-                style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().headlineMedium
+                style = com.worstkmp.ui.theme.getWorstTypography().headlineMedium
             )
             WorstButton(
                 onClick = {}
@@ -100,12 +100,12 @@ private fun WorstSurfacePreview() {
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun WorstSurfaceDarkPreview() {
-    _root_ide_package_.com.worstkmp.ui.theme.WorstTheme {
+    com.worstkmp.ui.theme.WorstTheme {
         WorstSurface {
             WorstCard (modifier = Modifier.fillMaxWidth().padding(16.dp)){
                 WorstText(
                     text = "Seal Explosions",
-                    style = _root_ide_package_.com.worstkmp.ui.theme.getWorstTypography().headlineMedium
+                    style = com.worstkmp.ui.theme.getWorstTypography().headlineMedium
                 )
                 WorstButton(
                     onClick = {}

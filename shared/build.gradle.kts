@@ -12,6 +12,16 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    // === Linker fix for SQLDelight on iOS ===
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { target ->
+        target.binaries.framework {
+            baseName = "ComposeApp"   // Must match your Xcode framework name (check iosApp project)
+        }
+    }
+
     sourceSets {
         // commonMain = code that runs on ALL platforms (Android + Desktop + iOS)
         // This is where most of the business logic, models, ViewModels, and SQLDelight queries live.
@@ -61,7 +71,7 @@ kotlin {
         }
 
         iosMain.dependencies {
-            implementation(libs.sqlDelight.native.driver)   // NativeSqliteDriver for iOS
+            implementation(libs.sqlDelight.native.driver)
         }
     }
 }

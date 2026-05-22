@@ -45,12 +45,8 @@ kotlin {
 
         iosMain.dependencies {
             implementation(project(":shared"))
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
-            implementation(libs.koin.compose.viewmodel)
-            implementation(libs.compose.ui)
-            implementation(libs.sqlDelight.native.driver)   // ← Add this
 
+            implementation(libs.compose.ui)
         }
 
         androidMain.dependencies {

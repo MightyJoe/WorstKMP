@@ -62,15 +62,15 @@ fun WorstCard(
 ) {
     Card(
         modifier = modifier,
-        shape = _root_ide_package_.com.worstkmp.ui.theme.getWorstShapes().large,
+        shape = com.worstkmp.ui.theme.getWorstShapes().large,
         colors = CardDefaults.cardColors(
-            containerColor = _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().surface
+            containerColor = com.worstkmp.ui.theme.getWorstColorScheme().surface
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 0.dp,
             pressedElevation = 0.dp
         ),
-        border = BorderStroke(0.5.dp, _root_ide_package_.com.worstkmp.ui.theme.getWorstColorScheme().outline) // Very subtle dark mode border
+        border = BorderStroke(0.5.dp, com.worstkmp.ui.theme.getWorstColorScheme().outline) // Very subtle dark mode border
 
     ) {
         Column(
