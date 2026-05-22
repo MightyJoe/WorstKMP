@@ -1,5 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -16,9 +17,12 @@ kotlin {
         }
     }
 
+    val iosArm64 = iosArm64()
+    val iosSimulatorArm64 = iosSimulatorArm64()
+
     listOf(
-        iosArm64(),
-        iosSimulatorArm64()
+        iosArm64,
+        iosSimulatorArm64
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
@@ -29,6 +33,26 @@ kotlin {
     jvm()
 
     sourceSets {
+        val iosMain: KotlinSourceSet by creating {
+            dependsOn(commonMain.get())
+        }
+        val iosArm64Main by getting {
+            dependsOn(iosMain)
+        }
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
+
+        iosMain.dependencies {
+            implementation(project(":shared"))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.compose.ui)
+            implementation(libs.sqlDelight.native.driver)   // ← Add this
+
+        }
+
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
@@ -58,6 +82,9 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
+
+
+
     }
 }
 
