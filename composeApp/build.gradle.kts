@@ -62,11 +62,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.worstprogrammer.worstkmp"
+    namespace = "com.worstkmp"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.worstprogrammer.worstkmp"
+        applicationId = "com.worstkmp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -94,11 +94,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.worstprogrammer.worstkmp.MainKt"
+        mainClass = "com.worstkmp.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.worstprogrammer.worstkmp"
+            packageName = "com.worstkmp"
             packageVersion = "1.0.0"
         }
     }
