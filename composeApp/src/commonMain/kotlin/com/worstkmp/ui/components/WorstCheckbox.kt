@@ -3,15 +3,10 @@ package com.worstkmp.ui.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
@@ -83,29 +78,29 @@ fun WorstCheckbox(
     }
 
 }
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewWorstCheckbox() {
-    com.worstkmp.ui.theme.WorstTheme {
-        WorstCheckbox(
-            checked = true,
-            onCheckedChange = null,
-            label = "Cheesy Dibbles"
-        )
-    }
-}
-
-@Preview( uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun PreviewWorstCheckboxDark() {
-    com.worstkmp.ui.theme.WorstTheme {
-        WorstSurface() {
-            WorstCheckbox(
-                checked = true,
-                onCheckedChange = null,
-                label = "Diversion!"
-            )
-        }
-    }
-}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewWorstCheckbox() {
+//    com.worstkmp.ui.theme.WorstTheme {
+//        WorstCheckbox(
+//            checked = true,
+//            onCheckedChange = null,
+//            label = "Cheesy Dibbles"
+//        )
+//    }
+//}
+//
+//@Preview( uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//fun PreviewWorstCheckboxDark() {
+//    com.worstkmp.ui.theme.WorstTheme {
+//        WorstSurface() {
+//            WorstCheckbox(
+//                checked = true,
+//                onCheckedChange = null,
+//                label = "Diversion!"
+//            )
+//        }
+//    }
+//}

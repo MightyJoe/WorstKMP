@@ -8,14 +8,11 @@ package com.worstkmp.ui.components
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
@@ -78,41 +75,41 @@ fun WorstSurface(
     )
 }
 
-
-@Preview
-@Composable
-private fun WorstSurfacePreview() {
-    WorstSurface() {
-        WorstCard(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-            WorstText(
-                text = "I REJECT NATURE!",
-                style = com.worstkmp.ui.theme.getWorstTypography().headlineMedium
-            )
-            WorstButton(
-                onClick = {}
-            ) {
-                WorstText(text = "Get that egg!")
-            }
-        }
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun WorstSurfaceDarkPreview() {
-    com.worstkmp.ui.theme.WorstTheme {
-        WorstSurface {
-            WorstCard (modifier = Modifier.fillMaxWidth().padding(16.dp)){
-                WorstText(
-                    text = "Seal Explosions",
-                    style = com.worstkmp.ui.theme.getWorstTypography().headlineMedium
-                )
-                WorstButton(
-                    onClick = {}
-                ) {
-                    WorstText(text = "Woah.")
-                }
-            }
-        }
-    }
-}
+//
+//@Preview
+//@Composable
+//private fun WorstSurfacePreview() {
+//    WorstSurface() {
+//        WorstCard(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+//            WorstText(
+//                text = "I REJECT NATURE!",
+//                style = com.worstkmp.ui.theme.getWorstTypography().headlineMedium
+//            )
+//            WorstButton(
+//                onClick = {}
+//            ) {
+//                WorstText(text = "Get that egg!")
+//            }
+//        }
+//    }
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//private fun WorstSurfaceDarkPreview() {
+//    com.worstkmp.ui.theme.WorstTheme {
+//        WorstSurface {
+//            WorstCard (modifier = Modifier.fillMaxWidth().padding(16.dp)){
+//                WorstText(
+//                    text = "Seal Explosions",
+//                    style = com.worstkmp.ui.theme.getWorstTypography().headlineMedium
+//                )
+//                WorstButton(
+//                    onClick = {}
+//                ) {
+//                    WorstText(text = "Woah.")
+//                }
+//            }
+//        }
+//    }
+//}

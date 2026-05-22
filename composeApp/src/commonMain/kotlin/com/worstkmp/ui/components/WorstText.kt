@@ -1,11 +1,8 @@
 package com.worstkmp.ui.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,8 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.worstkmp.ui.theme.getWorstColorScheme
@@ -119,37 +114,37 @@ fun WorstText(
         onTextLayout = onTextLayout,
     )
 }
-
-@Preview(showBackground = true, name = "Light Mode")
-@Composable
-private fun WorstTextPreview() {
-            WorstText(modifier = Modifier.fillMaxWidth().padding(32.dp),
-                text = "This is it boys!")
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun WorstTextDarkPreview() {
-    WorstText(modifier = Modifier.fillMaxWidth().padding(32.dp),
-        text = "Smile and wave, boys!")
-}
-
-@Preview(showBackground = true, name = "Light Mode")
-@Composable
-private fun WorstBigTextPreview() {
-    WorstText(
-        modifier = Modifier.fillMaxWidth().padding(32.dp),
-        text = "This is it boys!",
-        style = getWorstTypography().titleLarge
-    )
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun WorstBigTextDarkPreview() {
-    WorstText(
-        modifier = Modifier.fillMaxWidth().padding(32.dp),
-        text = "Smile and wave, boys!",
-        style = getWorstTypography().headlineLarge
-    )
-}
+//
+//@Preview(showBackground = true, name = "Light Mode")
+//@Composable
+//private fun WorstTextPreview() {
+//            WorstText(modifier = Modifier.fillMaxWidth().padding(32.dp),
+//                text = "This is it boys!")
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//private fun WorstTextDarkPreview() {
+//    WorstText(modifier = Modifier.fillMaxWidth().padding(32.dp),
+//        text = "Smile and wave, boys!")
+//}
+//
+//@Preview(showBackground = true, name = "Light Mode")
+//@Composable
+//private fun WorstBigTextPreview() {
+//    WorstText(
+//        modifier = Modifier.fillMaxWidth().padding(32.dp),
+//        text = "This is it boys!",
+//        style = getWorstTypography().titleLarge
+//    )
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//private fun WorstBigTextDarkPreview() {
+//    WorstText(
+//        modifier = Modifier.fillMaxWidth().padding(32.dp),
+//        text = "Smile and wave, boys!",
+//        style = getWorstTypography().headlineLarge
+//    )
+//}

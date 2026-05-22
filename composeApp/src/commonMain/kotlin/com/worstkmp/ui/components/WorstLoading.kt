@@ -5,13 +5,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.worstkmp.ui.theme.WorstTheme
@@ -63,18 +59,18 @@ fun WorstLoading(
         )
     }
 }
-
-@Preview
-@Composable
-fun WorstLoadingPreview() {
-    WorstLoading(modifier = Modifier.padding(16.dp))
-
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun WorstLoadingNightModePreview() {
-    WorstLoading(modifier = Modifier.padding(16.dp))
-
-}
+//
+//@Preview
+//@Composable
+//fun WorstLoadingPreview() {
+//    WorstLoading(modifier = Modifier.padding(16.dp))
+//
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//fun WorstLoadingNightModePreview() {
+//    WorstLoading(modifier = Modifier.padding(16.dp))
+//
+//}
 

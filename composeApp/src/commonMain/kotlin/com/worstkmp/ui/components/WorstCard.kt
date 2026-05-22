@@ -3,21 +3,14 @@ package com.worstkmp.ui.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.worstkmp.ui.theme.WorstTheme
 
 /**
  * # WorstCard
@@ -80,52 +73,52 @@ fun WorstCard(
         )
     }
 }
-
-@Preview(name = "Light Mode", showBackground = false)
-@Composable
-private fun WorstSurfacePreview() {
-
-    WorstCard(
-        modifier = Modifier.fillMaxWidth().padding(16.dp)
-    ) {
-        WorstText(
-            text = "🐧 Card Component Preview",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-        WorstText(
-            text = "This is a beautiful WorstCard with some sample content to showcase its styling and layout capabilities.",
-            modifier = Modifier.padding(bottom = 12.dp)
-        )
-        WorstButton(
-            onClick = {},
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            WorstText(text = "Take Action!")
-        }
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode", showBackground = false)
-@Composable
-private fun WorstSurfaceDarkPreview() {
-    WorstCard(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        WorstText(
-            text = "🌙 Night Mode Card",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-        WorstText(
-            text = "Dark mode activated! Looking slick with proper contrast and themed colors that make this card pop.",
-            modifier = Modifier.padding(bottom = 12.dp)
-        )
-        WorstButton(
-            onClick = {},
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            WorstText(text = "ENGAGE SECRET WEAPON! 🧀")
-        }
-    }
-}
+//
+//@Preview(name = "Light Mode", showBackground = false)
+//@Composable
+//private fun WorstSurfacePreview() {
+//
+//    WorstCard(
+//        modifier = Modifier.fillMaxWidth().padding(16.dp)
+//    ) {
+//        WorstText(
+//            text = "🐧 Card Component Preview",
+//            style = MaterialTheme.typography.titleMedium,
+//            modifier = Modifier.padding(bottom = 8.dp)
+//        )
+//        WorstText(
+//            text = "This is a beautiful WorstCard with some sample content to showcase its styling and layout capabilities.",
+//            modifier = Modifier.padding(bottom = 12.dp)
+//        )
+//        WorstButton(
+//            onClick = {},
+//            modifier = Modifier.fillMaxWidth()
+//        ) {
+//            WorstText(text = "Take Action!")
+//        }
+//    }
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode", showBackground = false)
+//@Composable
+//private fun WorstSurfaceDarkPreview() {
+//    WorstCard(
+//        modifier = Modifier.fillMaxWidth()
+//    ) {
+//        WorstText(
+//            text = "🌙 Night Mode Card",
+//            style = MaterialTheme.typography.titleMedium,
+//            modifier = Modifier.padding(bottom = 8.dp)
+//        )
+//        WorstText(
+//            text = "Dark mode activated! Looking slick with proper contrast and themed colors that make this card pop.",
+//            modifier = Modifier.padding(bottom = 12.dp)
+//        )
+//        WorstButton(
+//            onClick = {},
+//            modifier = Modifier.fillMaxWidth()
+//        ) {
+//            WorstText(text = "ENGAGE SECRET WEAPON! 🧀")
+//        }
+//    }
+//}

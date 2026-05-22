@@ -12,8 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.worstkmp.ui.components.*
@@ -185,47 +183,4 @@ object WorstTheme {
     val shapes: Shapes
         @Composable
         get() = getWorstShapes()
-}
-
-// ================================================================
-// Example Previews
-// ================================================================
-@Preview
-@Composable
-private fun WorstSurfacePreview() {
-    WorstTheme {
-        WorstSurface {
-            WorstCard {
-                WorstText(
-                    text = "WorstSurface Preview",
-                    style = MaterialTheme.typography.headlineMedium
-                )
-                WorstButton(
-                    onClick = {}
-                ) {
-                    WorstText(text = "Click Me")
-                }
-            }
-        }
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun WorstSurfaceDarkPreview() {
-    WorstTheme {
-        WorstSurface {
-            WorstCard {
-                WorstText(
-                    text = "WorstSurface Preview",
-                    style = MaterialTheme.typography.headlineMedium
-                )
-                WorstButton(
-                    onClick = {}
-                ) {
-                    WorstText(text = "Click Me")
-                }
-            }
-        }
-    }
 }

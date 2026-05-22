@@ -13,14 +13,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.worstkmp.ui.components.WorstLazyColumn
 import com.worstkmp.ui.components.WorstLoading
 import com.worstkmp.ui.components.WorstSurface
 import com.worstkmp.ui.components.WorstText
-import com.worstkmp.ui.theme.WorstTheme
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -61,19 +58,4 @@ fun HomeTab(modifier: Modifier = Modifier) {
 
 }
 
-@Preview
-@Composable
-fun HomeTabPreview() {
-    WorstTheme {
-        HomeTab()
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun HomeTabNightModePreview() {
-    WorstTheme {
-        HomeTab()
-    }
-}
 

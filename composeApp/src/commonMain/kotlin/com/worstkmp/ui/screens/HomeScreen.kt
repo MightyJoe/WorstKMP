@@ -3,8 +3,6 @@ package com.worstkmp.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
@@ -94,20 +92,20 @@ class HomeScreen : Screen {
         }
     }
 
-    @Preview
-    @Composable
-    fun Preview() {
-        // We need to wrap the whole app in a WorstTheme to get the correct colors.
-        WorstTheme {
-            HomeScreenUI()
-        }
-    }
-
-    @Preview(uiMode = UI_MODE_NIGHT_YES)
-    @Composable
-    fun NightModePreview() {
-        WorstTheme {
-            HomeScreenUI()
-        }
-    }
+//    @Preview
+//    @Composable
+//    fun Preview() {
+//        // We need to wrap the whole app in a WorstTheme to get the correct colors.
+//        WorstTheme {
+//            HomeScreenUI()
+//        }
+//    }
+//
+//    @Preview(uiMode = UI_MODE_NIGHT_YES)
+//    @Composable
+//    fun NightModePreview() {
+//        WorstTheme {
+//            HomeScreenUI()
+//        }
+//    }
 }

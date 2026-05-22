@@ -1,10 +1,6 @@
 package com.worstkmp.ui.components
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -17,8 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import com.worstkmp.ui.theme.getWorstColorScheme
 
 /**
@@ -96,47 +90,47 @@ fun RowScope.WorstNavigationBarItem(
         )
     )
 }
-
-@Preview(showBackground = true, name = "Light Mode")
-@Composable
-private fun WorstNavigationBarItemLightPreview() {
-    var selectedItem by remember { mutableStateOf(0) }
-
-    NavigationBarPreview(selectedItem)
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
-@Composable
-private fun WorstNavigationBarItemDarkPreview() {
-    var selectedItem by remember { mutableStateOf(1) }
-
-    NavigationBarPreview(selectedItem)
-}
-
-@Composable
-public fun NavigationBarPreview(selectedItem: Int) {
-    var selectedItem1 = selectedItem
-    Surface {
-        WorstNavigationBar {
-            WorstNavigationBarItem(
-                selected = selectedItem1 == 0,
-                onClick = { selectedItem1 = 0 },
-                icon = { Icon(Icons.Filled.Home, contentDescription = "Home Base") },
-                label = { Text("HQ") }
-            )
-            WorstNavigationBarItem(
-                selected = selectedItem1 == 1,
-                onClick = { selectedItem1 = 1 },
-                icon = { Icon(Icons.Filled.Search, contentDescription = "Recon Mission") },
-                label = { Text("Search") }
-            )
-            WorstNavigationBarItem(
-                selected = selectedItem1 == 2,
-                onClick = { selectedItem1 = 2 },
-                icon = { Icon(Icons.Filled.Settings, contentDescription = "Command Center") },
-                label = { Text("Settings") }
-            )
-        }
-    }
-}
-
+//
+//@Preview(showBackground = true, name = "Light Mode")
+//@Composable
+//private fun WorstNavigationBarItemLightPreview() {
+//    var selectedItem by remember { mutableStateOf(0) }
+//
+//    NavigationBarPreview(selectedItem)
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
+//@Composable
+//private fun WorstNavigationBarItemDarkPreview() {
+//    var selectedItem by remember { mutableStateOf(1) }
+//
+//    NavigationBarPreview(selectedItem)
+//}
+//
+//@Composable
+//public fun NavigationBarPreview(selectedItem: Int) {
+//    var selectedItem1 = selectedItem
+//    Surface {
+//        WorstNavigationBar {
+//            WorstNavigationBarItem(
+//                selected = selectedItem1 == 0,
+//                onClick = { selectedItem1 = 0 },
+//                icon = { Icon(Icons.Filled.Home, contentDescription = "Home Base") },
+//                label = { Text("HQ") }
+//            )
+//            WorstNavigationBarItem(
+//                selected = selectedItem1 == 1,
+//                onClick = { selectedItem1 = 1 },
+//                icon = { Icon(Icons.Filled.Search, contentDescription = "Recon Mission") },
+//                label = { Text("Search") }
+//            )
+//            WorstNavigationBarItem(
+//                selected = selectedItem1 == 2,
+//                onClick = { selectedItem1 = 2 },
+//                icon = { Icon(Icons.Filled.Settings, contentDescription = "Command Center") },
+//                label = { Text("Settings") }
+//            )
+//        }
+//    }
+//}
+//

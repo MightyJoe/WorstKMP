@@ -10,8 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -70,44 +68,44 @@ fun WorstLazyColumn(
         content = content
     )
 }
-
-@Preview(showBackground = true, name = "Light Mode")
-@Composable
-private fun WorstLazyColumnLightPreview() {
-    // Kowalski, analysis! Light mode operational preview - smooth scrolling confirmed!
-    WorstLazyColumn(
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(10) { index ->
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                WorstText("List Item #${index + 1} - Just smile and wave, boys!")
-            }
-        }
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
-@Composable
-private fun WorstLazyColumnDarkPreview() {
-    // Excellent work, boys! Dark mode preview - stealth operations at maximum efficiency!
-    WorstLazyColumn(
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(10) { index ->
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                WorstText("List Item #${index + 1} - Tactical midnight deployment!")
-            }
-        }
-    }
-}
-
+//
+//@Preview(showBackground = true, name = "Light Mode")
+//@Composable
+//private fun WorstLazyColumnLightPreview() {
+//    // Kowalski, analysis! Light mode operational preview - smooth scrolling confirmed!
+//    WorstLazyColumn(
+//        contentPadding = PaddingValues(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(8.dp)
+//    ) {
+//        items(10) { index ->
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(16.dp)
+//            ) {
+//                WorstText("List Item #${index + 1} - Just smile and wave, boys!")
+//            }
+//        }
+//    }
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
+//@Composable
+//private fun WorstLazyColumnDarkPreview() {
+//    // Excellent work, boys! Dark mode preview - stealth operations at maximum efficiency!
+//    WorstLazyColumn(
+//        contentPadding = PaddingValues(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(8.dp)
+//    ) {
+//        items(10) { index ->
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(16.dp)
+//            ) {
+//                WorstText("List Item #${index + 1} - Tactical midnight deployment!")
+//            }
+//        }
+//    }
+//}
+//

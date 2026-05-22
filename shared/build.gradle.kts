@@ -13,12 +13,15 @@ kotlin {
     iosSimulatorArm64()
 
     // === Linker fix for SQLDelight on iOS ===
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { target ->
-        target.binaries.framework {
-            baseName = "ComposeApp"   // Must match your Xcode framework name (check iosApp project)
+    val iosArm64 = iosArm64()
+    val iosSimulatorArm64 = iosSimulatorArm64()
+
+    // === SQLDelight iOS Linker Fix (must be in BOTH projects) ===
+    listOf(iosArm64, iosSimulatorArm64).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+            linkerOpts("-lsqlite3")
         }
     }
 

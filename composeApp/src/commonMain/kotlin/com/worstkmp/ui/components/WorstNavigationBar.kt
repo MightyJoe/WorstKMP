@@ -1,14 +1,8 @@
 package com.worstkmp.ui.components
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,11 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.worstkmp.ui.theme.getWorstColorScheme
-import com.worstkmp.ui.components.WorstNavigationBarItem
 
 /**
  * # WorstNavigationBar
@@ -67,20 +58,20 @@ fun WorstNavigationBar(
         content = content
     )
 }
-
-@Preview(showBackground = true, name = "Light Mode")
-@Composable
-private fun WorstNavigationBarItemLightPreview() {
-    var selectedItem by remember { mutableStateOf(0) }
-
-    NavigationBarPreview(selectedItem)
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
-@Composable
-private fun WorstNavigationBarItemDarkPreview() {
-    var selectedItem by remember { mutableStateOf(1) }
-
-    NavigationBarPreview(selectedItem)
-}
-
+//
+//@Preview(showBackground = true, name = "Light Mode")
+//@Composable
+//private fun WorstNavigationBarItemLightPreview() {
+//    var selectedItem by remember { mutableStateOf(0) }
+//
+//    NavigationBarPreview(selectedItem)
+//}
+//
+//@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
+//@Composable
+//private fun WorstNavigationBarItemDarkPreview() {
+//    var selectedItem by remember { mutableStateOf(1) }
+//
+//    NavigationBarPreview(selectedItem)
+//}
+//

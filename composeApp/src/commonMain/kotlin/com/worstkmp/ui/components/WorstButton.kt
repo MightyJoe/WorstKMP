@@ -3,7 +3,6 @@ package com.worstkmp.ui.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -11,9 +10,6 @@ import androidx.compose.material3.ButtonElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 
 /**
  * # WorstButton
@@ -82,25 +78,5 @@ fun WorstButton(
             interactionSource = interactionSource,
             content = { content() }
         )
-    }
-}
-
-@Preview(name = "Light Mode")
-@Composable
-private fun WorstSurfacePreview() {
-    WorstButton(
-        onClick = {}
-    ) {
-        WorstText("Dennis!")
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES, name = "Dark Mode")
-@Composable
-private fun WorstSurfaceDarkPreview() {
-    WorstButton(
-        onClick = {}
-    ) {
-        WorstText("DORIS!")
     }
 }
