@@ -1,18 +1,23 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
-    androidTarget()
+    android {
+        namespace = "com.worstkmp.shared"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
     jvm("desktop")
-    iosArm64()
-    iosSimulatorArm64()
 
-    // === Linker fix for SQLDelight on iOS ===
     val iosArm64 = iosArm64()
     val iosSimulatorArm64 = iosSimulatorArm64()
 
@@ -26,12 +31,10 @@ kotlin {
     }
 
     sourceSets {
-        // commonMain = code that runs on ALL platforms (Android + Desktop + iOS)
-        // This is where most of the business logic, models, ViewModels, and SQLDelight queries live.
         val commonMain: KotlinSourceSet by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutines.core)   // For StateFlow, viewModelScope, etc.
-                implementation(libs.sqlDelight.runtime)        // Core SQLDelight engine (tables, queries)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.sqlDelight.runtime)
                 implementation(libs.coroutines.extensions)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.voyager.navigator)
@@ -42,27 +45,19 @@ kotlin {
             }
         }
 
-        // androidMain = code that ONLY runs on Android
-        // The Android-specific SQLite driver.
         val androidMain: KotlinSourceSet by getting {
             dependencies {
-                implementation(libs.sqlDelight.android.driver)   // AndroidSqliteDriver + Android SQLite bindings
+                implementation(libs.sqlDelight.android.driver)
                 implementation(libs.koin.android)
             }
         }
 
-        // desktopMain = code that ONLY runs on Desktop (JVM)
-        // Uses JDBC (regular Java SQLite driver).
         val desktopMain: KotlinSourceSet by getting {
             dependencies {
-                implementation(libs.sqlDelight.jdbc.driver)      // JdbcSqliteDriver for desktop
+                implementation(libs.sqlDelight.jdbc.driver)
             }
         }
 
-        // === iOS Setup ===
-
-        // iosMain = a virtual source set that both iOS targets share
-        // Created so we don't have to duplicate iOS code twice.
         val iosMain: KotlinSourceSet by creating {
             dependsOn(commonMain)
         }
@@ -85,20 +80,5 @@ sqldelight {
             packageName.set("com.worstkmp")
             srcDirs.setFrom("src/commonMain/sqldelight")
         }
-    }
-}
-
-// Android configuration
-android {
-    namespace = "com.worstkmp"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
